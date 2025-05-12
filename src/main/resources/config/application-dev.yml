@@ -34,7 +34,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mariadb://localhost:3306/fanconi?useLegacyDatetimeCode=false
     username: root
-    password:
+    password: Fanconi2025$$$
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -57,7 +57,7 @@ spring:
     cache: false
 
 server:
-  port: 8080
+  port: 8090
   # make sure requests the proxy uri instead of the server one
   forward-headers-strategy: native
 
