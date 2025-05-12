@@ -1,0 +1,182 @@
+<div>
+  <h2 id="page-heading" data-cy="CytogenetiqueHeading">
+    <span>Cytogenetiques</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cytogenetique"
+        [routerLink]="['/cytogenetique/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Cytogenetique</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (cytogenetiques?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Cytogenetique trouvé</span>
+    </div>
+  }
+
+  @if (cytogenetiques && cytogenetiques.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nDossierPatient">
+              <div class="d-flex">
+                <span>N Dossier Patient</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nEtudeCyto">
+              <div class="d-flex">
+                <span>N Etude Cyto</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lymphocytes">
+              <div class="d-flex">
+                <span>Lymphocytes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateSang">
+              <div class="d-flex">
+                <span>Date Sang</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="laboratoire">
+              <div class="d-flex">
+                <span>Laboratoire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="agentPontant">
+              <div class="d-flex">
+                <span>Agent Pontant</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="instabilite">
+              <div class="d-flex">
+                <span>Instabilite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="instabilitePourcentage">
+              <div class="d-flex">
+                <span>Instabilite Pourcentage</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="iR">
+              <div class="d-flex">
+                <span>I R</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="iRPourcentage">
+              <div class="d-flex">
+                <span>I R Pourcentage</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="moelle">
+              <div class="d-flex">
+                <span>Moelle</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateMoelle">
+              <div class="d-flex">
+                <span>Date Moelle</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="resultatMoelle">
+              <div class="d-flex">
+                <span>Resultat Moelle</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (cytogenetique of cytogenetiques; track trackId(cytogenetique)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/cytogenetique', cytogenetique.id, 'view']">{{ cytogenetique.id }}</a>
+              </td>
+              <td>{{ cytogenetique.nDossierPatient }}</td>
+              <td>{{ cytogenetique.nEtudeCyto }}</td>
+              <td>{{ cytogenetique.lymphocytes }}</td>
+              <td>{{ cytogenetique.dateSang | formatMediumDate }}</td>
+              <td>{{ cytogenetique.laboratoire }}</td>
+              <td>{{ cytogenetique.agentPontant }}</td>
+              <td>{{ cytogenetique.instabilite }}</td>
+              <td>{{ cytogenetique.instabilitePourcentage }}</td>
+              <td>{{ cytogenetique.iR }}</td>
+              <td>{{ cytogenetique.iRPourcentage }}</td>
+              <td>{{ cytogenetique.moelle }}</td>
+              <td>{{ cytogenetique.dateMoelle | formatMediumDate }}</td>
+              <td>{{ cytogenetique.resultatMoelle }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/cytogenetique', cytogenetique.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/cytogenetique', cytogenetique.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(cytogenetique)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

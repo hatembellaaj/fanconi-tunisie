@@ -1,0 +1,98 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (medecin(); as medecinRef) {
+      <div>
+        <h2 data-cy="medecinDetailsHeading"><span>Medecin</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ medecinRef.id }}</span>
+          </dd>
+          <dt><span>C IN</span></dt>
+          <dd>
+            <span>{{ medecinRef.cIN }}</span>
+          </dd>
+          <dt><span>Nom Medecin</span></dt>
+          <dd>
+            <span>{{ medecinRef.nomMedecin }}</span>
+          </dd>
+          <dt><span>Prenom Medecin</span></dt>
+          <dd>
+            <span>{{ medecinRef.prenomMedecin }}</span>
+          </dd>
+          <dt><span>Grade</span></dt>
+          <dd>
+            <span>{{ medecinRef.grade }}</span>
+          </dd>
+          <dt><span>Type Medecin</span></dt>
+          <dd>
+            <span>{{ medecinRef.typeMedecin }}</span>
+          </dd>
+          <dt><span>Gouvernorat M</span></dt>
+          <dd>
+            <span>{{ medecinRef.gouvernoratM }}</span>
+          </dd>
+          <dt><span>Adresse M</span></dt>
+          <dd>
+            <span>{{ medecinRef.adresseM }}</span>
+          </dd>
+          <dt><span>Tel M</span></dt>
+          <dd>
+            <span>{{ medecinRef.telM }}</span>
+          </dd>
+          <dt><span>Poste M</span></dt>
+          <dd>
+            <span>{{ medecinRef.posteM }}</span>
+          </dd>
+          <dt><span>Fax M</span></dt>
+          <dd>
+            <span>{{ medecinRef.faxM }}</span>
+          </dd>
+          <dt><span>Email M</span></dt>
+          <dd>
+            <span>{{ medecinRef.emailM }}</span>
+          </dd>
+          <dt><span>Hopital</span></dt>
+          <dd>
+            <span>{{ medecinRef.hopital }}</span>
+          </dd>
+          <dt><span>Service</span></dt>
+          <dd>
+            <span>{{ medecinRef.service }}</span>
+          </dd>
+          <dt><span>Image</span></dt>
+          <dd>
+            <span>{{ medecinRef.image }}</span>
+          </dd>
+          <dt><span>Login</span></dt>
+          <dd>
+            <span>{{ medecinRef.login }}</span>
+          </dd>
+          <dt><span>Passwd</span></dt>
+          <dd>
+            <span>{{ medecinRef.passwd }}</span>
+          </dd>
+          <dt><span>U RL</span></dt>
+          <dd>
+            <span>{{ medecinRef.uRL }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/medecin', medecinRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,19 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181602"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nomLaboratoire",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Laboratoire",
+  "relationships": [],
+  "searchEngine": "no"
+}

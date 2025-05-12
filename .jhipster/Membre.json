@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181604"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nDossierM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idMembre",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "prenomM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lienParente",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeCancerM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ageDecouverteM",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Membre",
+  "relationships": [],
+  "searchEngine": "no"
+}

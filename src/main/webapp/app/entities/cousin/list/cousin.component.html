@@ -1,0 +1,118 @@
+<div>
+  <h2 id="page-heading" data-cy="CousinHeading">
+    <span>Cousins</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cousin"
+        [routerLink]="['/cousin/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Cousin</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (cousins?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Cousin trouvé</span>
+    </div>
+  }
+
+  @if (cousins && cousins.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ndossierC">
+              <div class="d-flex">
+                <span>Ndossier C</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="idCousin">
+              <div class="d-flex">
+                <span>Id Cousin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenomCousin">
+              <div class="d-flex">
+                <span>Prenom Cousin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="placeCousin">
+              <div class="d-flex">
+                <span>Place Cousin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sexeC">
+              <div class="d-flex">
+                <span>Sexe C</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (cousin of cousins; track trackId(cousin)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/cousin', cousin.id, 'view']">{{ cousin.id }}</a>
+              </td>
+              <td>{{ cousin.ndossierC }}</td>
+              <td>{{ cousin.idCousin }}</td>
+              <td>{{ cousin.prenomCousin }}</td>
+              <td>{{ cousin.placeCousin }}</td>
+              <td>{{ cousin.sexeC }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/cousin', cousin.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/cousin', cousin.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(cousin)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

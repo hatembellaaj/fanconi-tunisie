@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181556"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "ndossierC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idCousin",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "prenomCousin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "placeCousin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexeC",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Cousin",
+  "relationships": [],
+  "searchEngine": "no"
+}

@@ -1,0 +1,132 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-cytogeneticien-heading" data-cy="CytogeneticienCreateUpdateHeading">Créer ou éditer un Cytogeneticien</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_code">Code</label>
+          <input type="number" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_service">Service</label>
+          <input type="text" class="form-control" name="service" id="field_service" data-cy="service" formControlName="service" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_etab">Etab</label>
+          <input type="text" class="form-control" name="etab" id="field_etab" data-cy="etab" formControlName="etab" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adresse">Adresse</label>
+          <input type="text" class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tel">Tel</label>
+          <input type="text" class="form-control" name="tel" id="field_tel" data-cy="tel" formControlName="tel" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_poste">Poste</label>
+          <input type="text" class="form-control" name="poste" id="field_poste" data-cy="poste" formControlName="poste" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fax">Fax</label>
+          <input type="text" class="form-control" name="fax" id="field_fax" data-cy="fax" formControlName="fax" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        @let photoRef = editForm.get('photo')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_photo">Photo</label>
+          <div>
+            @if (photoRef.value) {
+              <div class="form-text text-danger clearfix">
+                <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(photoRef.value!) }}</span>
+                <button
+                  type="button"
+                  (click)="editForm.patchValue({ photo: undefined, photoContentType: undefined })"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+            }
+            <input type="file" id="file_photo" data-cy="photo" (change)="setFileData($event, 'photo', false)" />
+          </div>
+          <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoContentType"
+            id="field_photoContentType"
+            formControlName="photoContentType"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_type">Type</label>
+          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_login">Login</label>
+          <input type="text" class="form-control" name="login" id="field_login" data-cy="login" formControlName="login" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_passwd">Passwd</label>
+          <input type="text" class="form-control" name="passwd" id="field_passwd" data-cy="passwd" formControlName="passwd" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_uRL">U RL</label>
+          <input type="text" class="form-control" name="uRL" id="field_uRL" data-cy="uRL" formControlName="uRL" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

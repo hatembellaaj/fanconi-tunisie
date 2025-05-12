@@ -1,0 +1,186 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-cytogenetique-heading" data-cy="CytogenetiqueCreateUpdateHeading">Créer ou éditer un Cytogenetique</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nDossierPatient">N Dossier Patient</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nDossierPatient"
+            id="field_nDossierPatient"
+            data-cy="nDossierPatient"
+            formControlName="nDossierPatient"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nEtudeCyto">N Etude Cyto</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nEtudeCyto"
+            id="field_nEtudeCyto"
+            data-cy="nEtudeCyto"
+            formControlName="nEtudeCyto"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lymphocytes">Lymphocytes</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lymphocytes"
+            id="field_lymphocytes"
+            data-cy="lymphocytes"
+            formControlName="lymphocytes"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateSang">Date Sang</label>
+          <div class="input-group">
+            <input
+              id="field_dateSang"
+              data-cy="dateSang"
+              type="text"
+              class="form-control"
+              name="dateSang"
+              ngbDatepicker
+              #dateSangDp="ngbDatepicker"
+              formControlName="dateSang"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateSangDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_laboratoire">Laboratoire</label>
+          <input
+            type="text"
+            class="form-control"
+            name="laboratoire"
+            id="field_laboratoire"
+            data-cy="laboratoire"
+            formControlName="laboratoire"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agentPontant">Agent Pontant</label>
+          <input
+            type="text"
+            class="form-control"
+            name="agentPontant"
+            id="field_agentPontant"
+            data-cy="agentPontant"
+            formControlName="agentPontant"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_instabilite">Instabilite</label>
+          <input
+            type="text"
+            class="form-control"
+            name="instabilite"
+            id="field_instabilite"
+            data-cy="instabilite"
+            formControlName="instabilite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_instabilitePourcentage">Instabilite Pourcentage</label>
+          <input
+            type="number"
+            class="form-control"
+            name="instabilitePourcentage"
+            id="field_instabilitePourcentage"
+            data-cy="instabilitePourcentage"
+            formControlName="instabilitePourcentage"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_iR">I R</label>
+          <input type="text" class="form-control" name="iR" id="field_iR" data-cy="iR" formControlName="iR" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_iRPourcentage">I R Pourcentage</label>
+          <input
+            type="number"
+            class="form-control"
+            name="iRPourcentage"
+            id="field_iRPourcentage"
+            data-cy="iRPourcentage"
+            formControlName="iRPourcentage"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_moelle">Moelle</label>
+          <input type="text" class="form-control" name="moelle" id="field_moelle" data-cy="moelle" formControlName="moelle" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateMoelle">Date Moelle</label>
+          <div class="input-group">
+            <input
+              id="field_dateMoelle"
+              data-cy="dateMoelle"
+              type="text"
+              class="form-control"
+              name="dateMoelle"
+              ngbDatepicker
+              #dateMoelleDp="ngbDatepicker"
+              formControlName="dateMoelle"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateMoelleDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_resultatMoelle">Resultat Moelle</label>
+          <input
+            type="text"
+            class="form-control"
+            name="resultatMoelle"
+            id="field_resultatMoelle"
+            data-cy="resultatMoelle"
+            formControlName="resultatMoelle"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

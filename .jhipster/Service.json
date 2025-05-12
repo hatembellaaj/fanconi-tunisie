@@ -1,0 +1,19 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181607"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "codeService",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nomService",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Service",
+  "relationships": [],
+  "searchEngine": "no"
+}

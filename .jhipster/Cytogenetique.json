@@ -1,0 +1,63 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181558"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nDossierPatient",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nEtudeCyto",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "lymphocytes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateSang",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "laboratoire",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "agentPontant",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "instabilite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "instabilitePourcentage",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "iR",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "iRPourcentage",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "moelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateMoelle",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "resultatMoelle",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Cytogenetique",
+  "relationships": [],
+  "searchEngine": "no"
+}

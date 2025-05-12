@@ -1,0 +1,2236 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-fiche-heading" data-cy="FicheCreateUpdateHeading">Créer ou éditer un Fiche</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nDossier">N Dossier</label>
+          <input type="text" class="form-control" name="nDossier" id="field_nDossier" data-cy="nDossier" formControlName="nDossier" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateDiagnostic">Date Diagnostic</label>
+          <div class="input-group">
+            <input
+              id="field_dateDiagnostic"
+              data-cy="dateDiagnostic"
+              type="text"
+              class="form-control"
+              name="dateDiagnostic"
+              ngbDatepicker
+              #dateDiagnosticDp="ngbDatepicker"
+              formControlName="dateDiagnostic"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDiagnosticDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateEnregistrement">Date Enregistrement</label>
+          <div class="input-group">
+            <input
+              id="field_dateEnregistrement"
+              data-cy="dateEnregistrement"
+              type="text"
+              class="form-control"
+              name="dateEnregistrement"
+              ngbDatepicker
+              #dateEnregistrementDp="ngbDatepicker"
+              formControlName="dateEnregistrement"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateEnregistrementDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_medecin">Medecin</label>
+          <input type="text" class="form-control" name="medecin" id="field_medecin" data-cy="medecin" formControlName="medecin" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hopital">Hopital</label>
+          <input type="number" class="form-control" name="hopital" id="field_hopital" data-cy="hopital" formControlName="hopital" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_service">Service</label>
+          <input type="number" class="form-control" name="service" id="field_service" data-cy="service" formControlName="service" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_degConsang">Deg Consang</label>
+          <input
+            type="text"
+            class="form-control"
+            name="degConsang"
+            id="field_degConsang"
+            data-cy="degConsang"
+            formControlName="degConsang"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_placeEnfant">Place Enfant</label>
+          <input
+            type="number"
+            class="form-control"
+            name="placeEnfant"
+            id="field_placeEnfant"
+            data-cy="placeEnfant"
+            formControlName="placeEnfant"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nbVivant">Nb Vivant</label>
+          <input type="number" class="form-control" name="nbVivant" id="field_nbVivant" data-cy="nbVivant" formControlName="nbVivant" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nbMort">Nb Mort</label>
+          <input type="number" class="form-control" name="nbMort" id="field_nbMort" data-cy="nbMort" formControlName="nbMort" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mortNe">Mort Ne</label>
+          <input type="number" class="form-control" name="mortNe" id="field_mortNe" data-cy="mortNe" formControlName="mortNe" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_avortement">Avortement</label>
+          <input
+            type="number"
+            class="form-control"
+            name="avortement"
+            id="field_avortement"
+            data-cy="avortement"
+            formControlName="avortement"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cousin">Cousin</label>
+          <input type="number" class="form-control" name="cousin" id="field_cousin" data-cy="cousin" formControlName="cousin" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_membre">Membre</label>
+          <input type="number" class="form-control" name="membre" id="field_membre" data-cy="membre" formControlName="membre" />
+        </div>
+
+        @let arbregenealogiqueRef = editForm.get('arbregenealogique')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_arbregenealogique">Arbregenealogique</label>
+          <div>
+            @if (arbregenealogiqueRef.value) {
+              <div class="form-text text-danger clearfix">
+                <span class="pull-start"
+                  >{{ editForm.get('arbregenealogiqueContentType')!.value }}, {{ byteSize(arbregenealogiqueRef.value!) }}</span
+                >
+                <button
+                  type="button"
+                  (click)="editForm.patchValue({ arbregenealogique: undefined, arbregenealogiqueContentType: undefined })"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+            }
+            <input
+              type="file"
+              id="file_arbregenealogique"
+              data-cy="arbregenealogique"
+              (change)="setFileData($event, 'arbregenealogique', false)"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="arbregenealogique"
+            id="field_arbregenealogique"
+            data-cy="arbregenealogique"
+            formControlName="arbregenealogique"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="arbregenealogiqueContentType"
+            id="field_arbregenealogiqueContentType"
+            formControlName="arbregenealogiqueContentType"
+          />
+        </div>
+
+        @let arbregenealogiquecancerRef = editForm.get('arbregenealogiquecancer')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_arbregenealogiquecancer">Arbregenealogiquecancer</label>
+          <div>
+            @if (arbregenealogiquecancerRef.value) {
+              <div class="form-text text-danger clearfix">
+                <span class="pull-start"
+                  >{{ editForm.get('arbregenealogiquecancerContentType')!.value }}, {{ byteSize(arbregenealogiquecancerRef.value!) }}</span
+                >
+                <button
+                  type="button"
+                  (click)="editForm.patchValue({ arbregenealogiquecancer: undefined, arbregenealogiquecancerContentType: undefined })"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+            }
+            <input
+              type="file"
+              id="file_arbregenealogiquecancer"
+              data-cy="arbregenealogiquecancer"
+              (change)="setFileData($event, 'arbregenealogiquecancer', false)"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="arbregenealogiquecancer"
+            id="field_arbregenealogiquecancer"
+            data-cy="arbregenealogiquecancer"
+            formControlName="arbregenealogiquecancer"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="arbregenealogiquecancerContentType"
+            id="field_arbregenealogiquecancerContentType"
+            formControlName="arbregenealogiquecancerContentType"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_syndromeAnemique">Syndrome Anemique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="syndromeAnemique"
+            id="field_syndromeAnemique"
+            data-cy="syndromeAnemique"
+            formControlName="syndromeAnemique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_syndromeHem">Syndrome Hem</label>
+          <input
+            type="text"
+            class="form-control"
+            name="syndromeHem"
+            id="field_syndromeHem"
+            data-cy="syndromeHem"
+            formControlName="syndromeHem"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_syndromeInf">Syndrome Inf</label>
+          <input
+            type="text"
+            class="form-control"
+            name="syndromeInf"
+            id="field_syndromeInf"
+            data-cy="syndromeInf"
+            formControlName="syndromeInf"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_decouverteFort">Decouverte Fort</label>
+          <input
+            type="text"
+            class="form-control"
+            name="decouverteFort"
+            id="field_decouverteFort"
+            data-cy="decouverteFort"
+            formControlName="decouverteFort"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_enqueteFam">Enquete Fam</label>
+          <input
+            type="text"
+            class="form-control"
+            name="enqueteFam"
+            id="field_enqueteFam"
+            data-cy="enqueteFam"
+            formControlName="enqueteFam"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeCancer">Type Cancer</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeCancer"
+            id="field_typeCancer"
+            data-cy="typeCancer"
+            formControlName="typeCancer"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cancer">Cancer</label>
+          <input type="text" class="form-control" name="cancer" id="field_cancer" data-cy="cancer" formControlName="cancer" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tailleNaiss">Taille Naiss</label>
+          <input
+            type="number"
+            class="form-control"
+            name="tailleNaiss"
+            id="field_tailleNaiss"
+            data-cy="tailleNaiss"
+            formControlName="tailleNaiss"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_poidsNaiss">Poids Naiss</label>
+          <input
+            type="number"
+            class="form-control"
+            name="poidsNaiss"
+            id="field_poidsNaiss"
+            data-cy="poidsNaiss"
+            formControlName="poidsNaiss"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hypotrophie">Hypotrophie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="hypotrophie"
+            id="field_hypotrophie"
+            data-cy="hypotrophie"
+            formControlName="hypotrophie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_troubleCroi">Trouble Croi</label>
+          <input
+            type="text"
+            class="form-control"
+            name="troubleCroi"
+            id="field_troubleCroi"
+            data-cy="troubleCroi"
+            formControlName="troubleCroi"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_aAgeChDiag">A Age Ch Diag</label>
+          <input
+            type="number"
+            class="form-control"
+            name="aAgeChDiag"
+            id="field_aAgeChDiag"
+            data-cy="aAgeChDiag"
+            formControlName="aAgeChDiag"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mAgeChDiag">M Age Ch Diag</label>
+          <input
+            type="number"
+            class="form-control"
+            name="mAgeChDiag"
+            id="field_mAgeChDiag"
+            data-cy="mAgeChDiag"
+            formControlName="mAgeChDiag"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_aAgeOssDiag">A Age Oss Diag</label>
+          <input
+            type="number"
+            class="form-control"
+            name="aAgeOssDiag"
+            id="field_aAgeOssDiag"
+            data-cy="aAgeOssDiag"
+            formControlName="aAgeOssDiag"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mAgeOssDiag">M Age Oss Diag</label>
+          <input
+            type="number"
+            class="form-control"
+            name="mAgeOssDiag"
+            id="field_mAgeOssDiag"
+            data-cy="mAgeOssDiag"
+            formControlName="mAgeOssDiag"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageRetard">Age Retard</label>
+          <input type="number" class="form-control" name="ageRetard" id="field_ageRetard" data-cy="ageRetard" formControlName="ageRetard" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_poids">Poids</label>
+          <input type="number" class="form-control" name="poids" id="field_poids" data-cy="poids" formControlName="poids" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_poidsDS">Poids DS</label>
+          <input type="text" class="form-control" name="poidsDS" id="field_poidsDS" data-cy="poidsDS" formControlName="poidsDS" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_taille">Taille</label>
+          <input type="number" class="form-control" name="taille" id="field_taille" data-cy="taille" formControlName="taille" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tailleDS">Taille DS</label>
+          <input type="text" class="form-control" name="tailleDS" id="field_tailleDS" data-cy="tailleDS" formControlName="tailleDS" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_atteinteCut">Atteinte Cut</label>
+          <input
+            type="text"
+            class="form-control"
+            name="atteinteCut"
+            id="field_atteinteCut"
+            data-cy="atteinteCut"
+            formControlName="atteinteCut"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tacheCaf">Tache Caf</label>
+          <input type="text" class="form-control" name="tacheCaf" id="field_tacheCaf" data-cy="tacheCaf" formControlName="tacheCaf" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ventre">Ventre</label>
+          <input type="text" class="form-control" name="ventre" id="field_ventre" data-cy="ventre" formControlName="ventre" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_membreSup">Membre Sup</label>
+          <input type="text" class="form-control" name="membreSup" id="field_membreSup" data-cy="membreSup" formControlName="membreSup" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_membreInf">Membre Inf</label>
+          <input type="text" class="form-control" name="membreInf" id="field_membreInf" data-cy="membreInf" formControlName="membreInf" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_visage">Visage</label>
+          <input type="text" class="form-control" name="visage" id="field_visage" data-cy="visage" formControlName="visage" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_thorax">Thorax</label>
+          <input type="text" class="form-control" name="thorax" id="field_thorax" data-cy="thorax" formControlName="thorax" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dOS">D OS</label>
+          <input type="text" class="form-control" name="dOS" id="field_dOS" data-cy="dOS" formControlName="dOS" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hyperPig">Hyper Pig</label>
+          <input type="text" class="form-control" name="hyperPig" id="field_hyperPig" data-cy="hyperPig" formControlName="hyperPig" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hypochromique">Hypochromique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="hypochromique"
+            id="field_hypochromique"
+            data-cy="hypochromique"
+            formControlName="hypochromique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_couleurPeau">Couleur Peau</label>
+          <input
+            type="text"
+            class="form-control"
+            name="couleurPeau"
+            id="field_couleurPeau"
+            data-cy="couleurPeau"
+            formControlName="couleurPeau"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreAtCut">Autre At Cut</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreAtCut"
+            id="field_autreAtCut"
+            data-cy="autreAtCut"
+            formControlName="autreAtCut"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_atteinteTete">Atteinte Tete</label>
+          <input
+            type="text"
+            class="form-control"
+            name="atteinteTete"
+            id="field_atteinteTete"
+            data-cy="atteinteTete"
+            formControlName="atteinteTete"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_microcephalie">Microcephalie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="microcephalie"
+            id="field_microcephalie"
+            data-cy="microcephalie"
+            formControlName="microcephalie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_microphtalmie">Microphtalmie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="microphtalmie"
+            id="field_microphtalmie"
+            data-cy="microphtalmie"
+            formControlName="microphtalmie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_facieTrig">Facie Trig</label>
+          <input type="text" class="form-control" name="facieTrig" id="field_facieTrig" data-cy="facieTrig" formControlName="facieTrig" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitsFin">Traits Fin</label>
+          <input type="text" class="form-control" name="traitsFin" id="field_traitsFin" data-cy="traitsFin" formControlName="traitsFin" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreAtTete">Autre At Tete</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreAtTete"
+            id="field_autreAtTete"
+            data-cy="autreAtTete"
+            formControlName="autreAtTete"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_empreintedigitiforme">Empreintedigitiforme</label>
+          <input
+            type="text"
+            class="form-control"
+            name="empreintedigitiforme"
+            id="field_empreintedigitiforme"
+            data-cy="empreintedigitiforme"
+            formControlName="empreintedigitiforme"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_malUro">Mal Uro</label>
+          <input type="text" class="form-control" name="malUro" id="field_malUro" data-cy="malUro" formControlName="malUro" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_uIV">U IV</label>
+          <input type="text" class="form-control" name="uIV" id="field_uIV" data-cy="uIV" formControlName="uIV" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_echo">Echo</label>
+          <input type="text" class="form-control" name="echo" id="field_echo" data-cy="echo" formControlName="echo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reinEctop">Rein Ectop</label>
+          <input type="text" class="form-control" name="reinEctop" id="field_reinEctop" data-cy="reinEctop" formControlName="reinEctop" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_siegeEctopie">Siege Ectopie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="siegeEctopie"
+            id="field_siegeEctopie"
+            data-cy="siegeEctopie"
+            formControlName="siegeEctopie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reinFerChev">Rein Fer Chev</label>
+          <input
+            type="text"
+            class="form-control"
+            name="reinFerChev"
+            id="field_reinFerChev"
+            data-cy="reinFerChev"
+            formControlName="reinFerChev"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_petitRein">Petit Rein</label>
+          <input type="text" class="form-control" name="petitRein" id="field_petitRein" data-cy="petitRein" formControlName="petitRein" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reinUnique">Rein Unique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="reinUnique"
+            id="field_reinUnique"
+            data-cy="reinUnique"
+            formControlName="reinUnique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ectopTest">Ectop Test</label>
+          <input type="text" class="form-control" name="ectopTest" id="field_ectopTest" data-cy="ectopTest" formControlName="ectopTest" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vergeInsuf">Verge Insuf</label>
+          <input
+            type="text"
+            class="form-control"
+            name="vergeInsuf"
+            id="field_vergeInsuf"
+            data-cy="vergeInsuf"
+            formControlName="vergeInsuf"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreAnomVerge">Autre Anom Verge</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreAnomVerge"
+            id="field_autreAnomVerge"
+            data-cy="autreAnomVerge"
+            formControlName="autreAnomVerge"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_retardPubertaire">Retard Pubertaire</label>
+          <input
+            type="text"
+            class="form-control"
+            name="retardPubertaire"
+            id="field_retardPubertaire"
+            data-cy="retardPubertaire"
+            formControlName="retardPubertaire"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mTanner">M Tanner</label>
+          <input type="text" class="form-control" name="mTanner" id="field_mTanner" data-cy="mTanner" formControlName="mTanner" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pTanner">P Tanner</label>
+          <input type="text" class="form-control" name="pTanner" id="field_pTanner" data-cy="pTanner" formControlName="pTanner" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tTanner">T Tanner</label>
+          <input type="text" class="form-control" name="tTanner" id="field_tTanner" data-cy="tTanner" formControlName="tTanner" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomUrin">Anom Urin</label>
+          <input type="text" class="form-control" name="anomUrin" id="field_anomUrin" data-cy="anomUrin" formControlName="anomUrin" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeAnomUrin">Type Anom Urin</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeAnomUrin"
+            id="field_typeAnomUrin"
+            data-cy="typeAnomUrin"
+            formControlName="typeAnomUrin"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_atteinteOss">Atteinte Oss</label>
+          <input
+            type="text"
+            class="form-control"
+            name="atteinteOss"
+            id="field_atteinteOss"
+            data-cy="atteinteOss"
+            formControlName="atteinteOss"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_radiosfaites">Radiosfaites</label>
+          <input
+            type="text"
+            class="form-control"
+            name="radiosfaites"
+            id="field_radiosfaites"
+            data-cy="radiosfaites"
+            formControlName="radiosfaites"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomPouce">Anom Pouce</label>
+          <input type="text" class="form-control" name="anomPouce" id="field_anomPouce" data-cy="anomPouce" formControlName="anomPouce" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_surnumerarie">Surnumerarie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="surnumerarie"
+            id="field_surnumerarie"
+            data-cy="surnumerarie"
+            formControlName="surnumerarie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agenesiePouce">Agenesie Pouce</label>
+          <input
+            type="text"
+            class="form-control"
+            name="agenesiePouce"
+            id="field_agenesiePouce"
+            data-cy="agenesiePouce"
+            formControlName="agenesiePouce"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bifide">Bifide</label>
+          <input type="text" class="form-control" name="bifide" id="field_bifide" data-cy="bifide" formControlName="bifide" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hypoPouce">Hypo Pouce</label>
+          <input type="text" class="form-control" name="hypoPouce" id="field_hypoPouce" data-cy="hypoPouce" formControlName="hypoPouce" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_aspectPouce">Aspect Pouce</label>
+          <input
+            type="text"
+            class="form-control"
+            name="aspectPouce"
+            id="field_aspectPouce"
+            data-cy="aspectPouce"
+            formControlName="aspectPouce"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hypoEminence">Hypo Eminence</label>
+          <input
+            type="text"
+            class="form-control"
+            name="hypoEminence"
+            id="field_hypoEminence"
+            data-cy="hypoEminence"
+            formControlName="hypoEminence"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_absenceRadial">Absence Radial</label>
+          <input
+            type="text"
+            class="form-control"
+            name="absenceRadial"
+            id="field_absenceRadial"
+            data-cy="absenceRadial"
+            formControlName="absenceRadial"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pouceBas">Pouce Bas</label>
+          <input type="text" class="form-control" name="pouceBas" id="field_pouceBas" data-cy="pouceBas" formControlName="pouceBas" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreAnomPouce">Autre Anom Pouce</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreAnomPouce"
+            id="field_autreAnomPouce"
+            data-cy="autreAnomPouce"
+            formControlName="autreAnomPouce"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomAutDoigts">Anom Aut Doigts</label>
+          <input
+            type="text"
+            class="form-control"
+            name="anomAutDoigts"
+            id="field_anomAutDoigts"
+            data-cy="anomAutDoigts"
+            formControlName="anomAutDoigts"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_courtstrapus">Courtstrapus</label>
+          <input
+            type="text"
+            class="form-control"
+            name="courtstrapus"
+            id="field_courtstrapus"
+            data-cy="courtstrapus"
+            formControlName="courtstrapus"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_syndactylie">Syndactylie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="syndactylie"
+            id="field_syndactylie"
+            data-cy="syndactylie"
+            formControlName="syndactylie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreAnomDoigts">Autre Anom Doigts</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreAnomDoigts"
+            id="field_autreAnomDoigts"
+            data-cy="autreAnomDoigts"
+            formControlName="autreAnomDoigts"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomalieos">Anomalieos</label>
+          <input
+            type="text"
+            class="form-control"
+            name="anomalieos"
+            id="field_anomalieos"
+            data-cy="anomalieos"
+            formControlName="anomalieos"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agenesieRadius">Agenesie Radius</label>
+          <input
+            type="text"
+            class="form-control"
+            name="agenesieRadius"
+            id="field_agenesieRadius"
+            data-cy="agenesieRadius"
+            formControlName="agenesieRadius"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreanomalieMembresup">Autreanomalie Membresup</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreanomalieMembresup"
+            id="field_autreanomalieMembresup"
+            data-cy="autreanomalieMembresup"
+            formControlName="autreanomalieMembresup"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomOrteil">Anom Orteil</label>
+          <input
+            type="text"
+            class="form-control"
+            name="anomOrteil"
+            id="field_anomOrteil"
+            data-cy="anomOrteil"
+            formControlName="anomOrteil"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_preciseAnomOrt">Precise Anom Ort</label>
+          <input
+            type="text"
+            class="form-control"
+            name="preciseAnomOrt"
+            id="field_preciseAnomOrt"
+            data-cy="preciseAnomOrt"
+            formControlName="preciseAnomOrt"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lCH">L CH</label>
+          <input type="text" class="form-control" name="lCH" id="field_lCH" data-cy="lCH" formControlName="lCH" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreanomalieMembreinf">Autreanomalie Membreinf</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreanomalieMembreinf"
+            id="field_autreanomalieMembreinf"
+            data-cy="autreanomalieMembreinf"
+            formControlName="autreanomalieMembreinf"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomRachis">Anom Rachis</label>
+          <input
+            type="text"
+            class="form-control"
+            name="anomRachis"
+            id="field_anomRachis"
+            data-cy="anomRachis"
+            formControlName="anomRachis"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_preciseAnomRac">Precise Anom Rac</label>
+          <input
+            type="text"
+            class="form-control"
+            name="preciseAnomRac"
+            id="field_preciseAnomRac"
+            data-cy="preciseAnomRac"
+            formControlName="preciseAnomRac"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreAnomOss">Autre Anom Oss</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreAnomOss"
+            id="field_autreAnomOss"
+            data-cy="autreAnomOss"
+            formControlName="autreAnomOss"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomNeuro">Anom Neuro</label>
+          <input type="text" class="form-control" name="anomNeuro" id="field_anomNeuro" data-cy="anomNeuro" formControlName="anomNeuro" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_retardMent">Retard Ment</label>
+          <input
+            type="text"
+            class="form-control"
+            name="retardMent"
+            id="field_retardMent"
+            data-cy="retardMent"
+            formControlName="retardMent"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hypoacousie">Hypoacousie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="hypoacousie"
+            id="field_hypoacousie"
+            data-cy="hypoacousie"
+            formControlName="hypoacousie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_strabisme">Strabisme</label>
+          <input type="text" class="form-control" name="strabisme" id="field_strabisme" data-cy="strabisme" formControlName="strabisme" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_performanceScolaire">Performance Scolaire</label>
+          <input
+            type="text"
+            class="form-control"
+            name="performanceScolaire"
+            id="field_performanceScolaire"
+            data-cy="performanceScolaire"
+            formControlName="performanceScolaire"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreanomalieneurologique">Autreanomalieneurologique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreanomalieneurologique"
+            id="field_autreanomalieneurologique"
+            data-cy="autreanomalieneurologique"
+            formControlName="autreanomalieneurologique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomCardVas">Anom Card Vas</label>
+          <input
+            type="text"
+            class="form-control"
+            name="anomCardVas"
+            id="field_anomCardVas"
+            data-cy="anomCardVas"
+            formControlName="anomCardVas"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_echoCoeur">Echo Coeur</label>
+          <input type="text" class="form-control" name="echoCoeur" id="field_echoCoeur" data-cy="echoCoeur" formControlName="echoCoeur" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_preciseAnomCardio">Precise Anom Cardio</label>
+          <input
+            type="text"
+            class="form-control"
+            name="preciseAnomCardio"
+            id="field_preciseAnomCardio"
+            data-cy="preciseAnomCardio"
+            formControlName="preciseAnomCardio"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anomDig">Anom Dig</label>
+          <input type="text" class="form-control" name="anomDig" id="field_anomDig" data-cy="anomDig" formControlName="anomDig" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_preciseAnomDig">Precise Anom Dig</label>
+          <input
+            type="text"
+            class="form-control"
+            name="preciseAnomDig"
+            id="field_preciseAnomDig"
+            data-cy="preciseAnomDig"
+            formControlName="preciseAnomDig"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_endocrinopathie">Endocrinopathie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="endocrinopathie"
+            id="field_endocrinopathie"
+            data-cy="endocrinopathie"
+            formControlName="endocrinopathie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diabete">Diabete</label>
+          <input type="text" class="form-control" name="diabete" id="field_diabete" data-cy="diabete" formControlName="diabete" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_insulinoDep">Insulino Dep</label>
+          <input
+            type="text"
+            class="form-control"
+            name="insulinoDep"
+            id="field_insulinoDep"
+            data-cy="insulinoDep"
+            formControlName="insulinoDep"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hypothyroidie">Hypothyroidie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="hypothyroidie"
+            id="field_hypothyroidie"
+            data-cy="hypothyroidie"
+            formControlName="hypothyroidie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageDecouverte">Age Decouverte</label>
+          <input
+            type="number"
+            class="form-control"
+            name="ageDecouverte"
+            id="field_ageDecouverte"
+            data-cy="ageDecouverte"
+            formControlName="ageDecouverte"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreEndocrinopathie">Autre Endocrinopathie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreEndocrinopathie"
+            id="field_autreEndocrinopathie"
+            data-cy="autreEndocrinopathie"
+            formControlName="autreEndocrinopathie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreAnomCong">Autre Anom Cong</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreAnomCong"
+            id="field_autreAnomCong"
+            data-cy="autreAnomCong"
+            formControlName="autreAnomCong"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateNumSanguine">Date Num Sanguine</label>
+          <div class="input-group">
+            <input
+              id="field_dateNumSanguine"
+              data-cy="dateNumSanguine"
+              type="text"
+              class="form-control"
+              name="dateNumSanguine"
+              ngbDatepicker
+              #dateNumSanguineDp="ngbDatepicker"
+              formControlName="dateNumSanguine"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateNumSanguineDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_age">Age</label>
+          <input type="number" class="form-control" name="age" id="field_age" data-cy="age" formControlName="age" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hb">Hb</label>
+          <input type="number" class="form-control" name="hb" id="field_hb" data-cy="hb" formControlName="hb" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vGM">V GM</label>
+          <input type="number" class="form-control" name="vGM" id="field_vGM" data-cy="vGM" formControlName="vGM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_retic">Retic</label>
+          <input type="number" class="form-control" name="retic" id="field_retic" data-cy="retic" formControlName="retic" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_leuco">Leuco</label>
+          <input type="number" class="form-control" name="leuco" id="field_leuco" data-cy="leuco" formControlName="leuco" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pNN">P NN</label>
+          <input type="number" class="form-control" name="pNN" id="field_pNN" data-cy="pNN" formControlName="pNN" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_plq">Plq</label>
+          <input type="number" class="form-control" name="plq" id="field_plq" data-cy="plq" formControlName="plq" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hbInf">Hb Inf</label>
+          <input type="text" class="form-control" name="hbInf" id="field_hbInf" data-cy="hbInf" formControlName="hbInf" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_plqInf">Plq Inf</label>
+          <input type="text" class="form-control" name="plqInf" id="field_plqInf" data-cy="plqInf" formControlName="plqInf" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pNNInf">P NN Inf</label>
+          <input type="text" class="form-control" name="pNNInf" id="field_pNNInf" data-cy="pNNInf" formControlName="pNNInf" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_electrophoreseHb">Electrophorese Hb</label>
+          <input
+            type="text"
+            class="form-control"
+            name="electrophoreseHb"
+            id="field_electrophoreseHb"
+            data-cy="electrophoreseHb"
+            formControlName="electrophoreseHb"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hbf">Hbf</label>
+          <input type="number" class="form-control" name="hbf" id="field_hbf" data-cy="hbf" formControlName="hbf" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_myelogramme">Myelogramme</label>
+          <input
+            type="text"
+            class="form-control"
+            name="myelogramme"
+            id="field_myelogramme"
+            data-cy="myelogramme"
+            formControlName="myelogramme"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cellularite">Cellularite</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cellularite"
+            id="field_cellularite"
+            data-cy="cellularite"
+            formControlName="cellularite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_erythroblaste">Erythroblaste</label>
+          <input
+            type="number"
+            class="form-control"
+            name="erythroblaste"
+            id="field_erythroblaste"
+            data-cy="erythroblaste"
+            formControlName="erythroblaste"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_morphologieEryth">Morphologie Eryth</label>
+          <input
+            type="text"
+            class="form-control"
+            name="morphologieEryth"
+            id="field_morphologieEryth"
+            data-cy="morphologieEryth"
+            formControlName="morphologieEryth"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_morphologieGran">Morphologie Gran</label>
+          <input
+            type="text"
+            class="form-control"
+            name="morphologieGran"
+            id="field_morphologieGran"
+            data-cy="morphologieGran"
+            formControlName="morphologieGran"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_morphologieMega">Morphologie Mega</label>
+          <input
+            type="text"
+            class="form-control"
+            name="morphologieMega"
+            id="field_morphologieMega"
+            data-cy="morphologieMega"
+            formControlName="morphologieMega"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_granuleux">Granuleux</label>
+          <input type="number" class="form-control" name="granuleux" id="field_granuleux" data-cy="granuleux" formControlName="granuleux" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dysmyelopoiese">Dysmyelopoiese</label>
+          <input
+            type="text"
+            class="form-control"
+            name="dysmyelopoiese"
+            id="field_dysmyelopoiese"
+            data-cy="dysmyelopoiese"
+            formControlName="dysmyelopoiese"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_megacaryocytes">Megacaryocytes</label>
+          <input
+            type="text"
+            class="form-control"
+            name="megacaryocytes"
+            id="field_megacaryocytes"
+            data-cy="megacaryocytes"
+            formControlName="megacaryocytes"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_blaste">Blaste</label>
+          <input type="number" class="form-control" name="blaste" id="field_blaste" data-cy="blaste" formControlName="blaste" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_excesblastes">Excesblastes</label>
+          <input
+            type="text"
+            class="form-control"
+            name="excesblastes"
+            id="field_excesblastes"
+            data-cy="excesblastes"
+            formControlName="excesblastes"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bOM">B OM</label>
+          <input type="text" class="form-control" name="bOM" id="field_bOM" data-cy="bOM" formControlName="bOM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adipocytes">Adipocytes</label>
+          <input
+            type="number"
+            class="form-control"
+            name="adipocytes"
+            id="field_adipocytes"
+            data-cy="adipocytes"
+            formControlName="adipocytes"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ubiquitination">Ubiquitination</label>
+          <input
+            type="text"
+            class="form-control"
+            name="ubiquitination"
+            id="field_ubiquitination"
+            data-cy="ubiquitination"
+            formControlName="ubiquitination"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_resUbiquitination">Res Ubiquitination</label>
+          <input
+            type="text"
+            class="form-control"
+            name="resUbiquitination"
+            id="field_resUbiquitination"
+            data-cy="resUbiquitination"
+            formControlName="resUbiquitination"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_groupComp">Group Comp</label>
+          <input type="text" class="form-control" name="groupComp" id="field_groupComp" data-cy="groupComp" formControlName="groupComp" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mutationFANC">Mutation FANC</label>
+          <input
+            type="text"
+            class="form-control"
+            name="mutationFANC"
+            id="field_mutationFANC"
+            data-cy="mutationFANC"
+            formControlName="mutationFANC"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_congelationCellule">Congelation Cellule</label>
+          <input
+            type="text"
+            class="form-control"
+            name="congelationCellule"
+            id="field_congelationCellule"
+            data-cy="congelationCellule"
+            formControlName="congelationCellule"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_labo">Labo</label>
+          <input type="text" class="form-control" name="labo" id="field_labo" data-cy="labo" formControlName="labo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typePrelevement">Type Prelevement</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typePrelevement"
+            id="field_typePrelevement"
+            data-cy="typePrelevement"
+            formControlName="typePrelevement"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_scoreClinique">Score Clinique</label>
+          <input
+            type="number"
+            class="form-control"
+            name="scoreClinique"
+            id="field_scoreClinique"
+            data-cy="scoreClinique"
+            formControlName="scoreClinique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_scoreEBMT">Score EBMT</label>
+          <input type="number" class="form-control" name="scoreEBMT" id="field_scoreEBMT" data-cy="scoreEBMT" formControlName="scoreEBMT" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_score">Score</label>
+          <input type="text" class="form-control" name="score" id="field_score" data-cy="score" formControlName="score" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_transfusion">Transfusion</label>
+          <input
+            type="text"
+            class="form-control"
+            name="transfusion"
+            id="field_transfusion"
+            data-cy="transfusion"
+            formControlName="transfusion"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageTransf">Age Transf</label>
+          <input type="number" class="form-control" name="ageTransf" id="field_ageTransf" data-cy="ageTransf" formControlName="ageTransf" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_delaiDiag">Delai Diag</label>
+          <input type="number" class="form-control" name="delaiDiag" id="field_delaiDiag" data-cy="delaiDiag" formControlName="delaiDiag" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nbCG">Nb CG</label>
+          <input type="text" class="form-control" name="nbCG" id="field_nbCG" data-cy="nbCG" formControlName="nbCG" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nbCP">Nb CP</label>
+          <input type="text" class="form-control" name="nbCP" id="field_nbCP" data-cy="nbCP" formControlName="nbCP" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_chelationFer">Chelation Fer</label>
+          <input
+            type="text"
+            class="form-control"
+            name="chelationFer"
+            id="field_chelationFer"
+            data-cy="chelationFer"
+            formControlName="chelationFer"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_chelateur">Chelateur</label>
+          <input type="text" class="form-control" name="chelateur" id="field_chelateur" data-cy="chelateur" formControlName="chelateur" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nilevar">Nilevar</label>
+          <input type="text" class="form-control" name="nilevar" id="field_nilevar" data-cy="nilevar" formControlName="nilevar" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_danatrol">Danatrol</label>
+          <input type="text" class="form-control" name="danatrol" id="field_danatrol" data-cy="danatrol" formControlName="danatrol" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_oxynethadone">Oxynethadone</label>
+          <input
+            type="text"
+            class="form-control"
+            name="oxynethadone"
+            id="field_oxynethadone"
+            data-cy="oxynethadone"
+            formControlName="oxynethadone"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_androtordyl">Androtordyl</label>
+          <input
+            type="text"
+            class="form-control"
+            name="androtordyl"
+            id="field_androtordyl"
+            data-cy="androtordyl"
+            formControlName="androtordyl"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreAndrogene">Autre Androgene</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreAndrogene"
+            id="field_autreAndrogene"
+            data-cy="autreAndrogene"
+            formControlName="autreAndrogene"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_androDebut">Andro Debut</label>
+          <div class="input-group">
+            <input
+              id="field_androDebut"
+              data-cy="androDebut"
+              type="text"
+              class="form-control"
+              name="androDebut"
+              ngbDatepicker
+              #androDebutDp="ngbDatepicker"
+              formControlName="androDebut"
+            />
+            <button type="button" class="btn btn-secondary" (click)="androDebutDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_androFin">Andro Fin</label>
+          <div class="input-group">
+            <input
+              id="field_androFin"
+              data-cy="androFin"
+              type="text"
+              class="form-control"
+              name="androFin"
+              ngbDatepicker
+              #androFinDp="ngbDatepicker"
+              formControlName="androFin"
+            />
+            <button type="button" class="btn btn-secondary" (click)="androFinDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_observance">Observance</label>
+          <input
+            type="text"
+            class="form-control"
+            name="observance"
+            id="field_observance"
+            data-cy="observance"
+            formControlName="observance"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_toxicite">Toxicite</label>
+          <input type="text" class="form-control" name="toxicite" id="field_toxicite" data-cy="toxicite" formControlName="toxicite" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreToxicite">Autre Toxicite</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreToxicite"
+            id="field_autreToxicite"
+            data-cy="autreToxicite"
+            formControlName="autreToxicite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_enqueteHLA">Enquete HLA</label>
+          <input
+            type="text"
+            class="form-control"
+            name="enqueteHLA"
+            id="field_enqueteHLA"
+            data-cy="enqueteHLA"
+            formControlName="enqueteHLA"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pourquoiEnqHLA">Pourquoi Enq HLA</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pourquoiEnqHLA"
+            id="field_pourquoiEnqHLA"
+            data-cy="pourquoiEnqHLA"
+            formControlName="pourquoiEnqHLA"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nbFratTyp">Nb Frat Typ</label>
+          <input type="number" class="form-control" name="nbFratTyp" id="field_nbFratTyp" data-cy="nbFratTyp" formControlName="nbFratTyp" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nbFratNTyp">Nb Frat N Typ</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nbFratNTyp"
+            id="field_nbFratNTyp"
+            data-cy="nbFratNTyp"
+            formControlName="nbFratNTyp"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_donneurComp">Donneur Comp</label>
+          <input
+            type="number"
+            class="form-control"
+            name="donneurComp"
+            id="field_donneurComp"
+            data-cy="donneurComp"
+            formControlName="donneurComp"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_preciseDonneur">Precise Donneur</label>
+          <input
+            type="text"
+            class="form-control"
+            name="preciseDonneur"
+            id="field_preciseDonneur"
+            data-cy="preciseDonneur"
+            formControlName="preciseDonneur"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_donneur">Donneur</label>
+          <input type="text" class="form-control" name="donneur" id="field_donneur" data-cy="donneur" formControlName="donneur" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_greffeFaite">Greffe Faite</label>
+          <input
+            type="text"
+            class="form-control"
+            name="greffeFaite"
+            id="field_greffeFaite"
+            data-cy="greffeFaite"
+            formControlName="greffeFaite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_delaiRappDiag">Delai Rapp Diag</label>
+          <input
+            type="number"
+            class="form-control"
+            name="delaiRappDiag"
+            id="field_delaiRappDiag"
+            data-cy="delaiRappDiag"
+            formControlName="delaiRappDiag"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pourquoiNfaite">Pourquoi Nfaite</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pourquoiNfaite"
+            id="field_pourquoiNfaite"
+            data-cy="pourquoiNfaite"
+            formControlName="pourquoiNfaite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cyclophosphamide">Cyclophosphamide</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cyclophosphamide"
+            id="field_cyclophosphamide"
+            data-cy="cyclophosphamide"
+            formControlName="cyclophosphamide"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fludarabine">Fludarabine</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fludarabine"
+            id="field_fludarabine"
+            data-cy="fludarabine"
+            formControlName="fludarabine"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_busulfan">Busulfan</label>
+          <input type="text" class="form-control" name="busulfan" id="field_busulfan" data-cy="busulfan" formControlName="busulfan" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_doseCyclo">Dose Cyclo</label>
+          <input type="number" class="form-control" name="doseCyclo" id="field_doseCyclo" data-cy="doseCyclo" formControlName="doseCyclo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_doseFlu">Dose Flu</label>
+          <input type="number" class="form-control" name="doseFlu" id="field_doseFlu" data-cy="doseFlu" formControlName="doseFlu" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_doseBus">Dose Bus</label>
+          <input type="number" class="form-control" name="doseBus" id="field_doseBus" data-cy="doseBus" formControlName="doseBus" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreConditionnement">Autre Conditionnement</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreConditionnement"
+            id="field_autreConditionnement"
+            data-cy="autreConditionnement"
+            formControlName="autreConditionnement"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_irradiation">Irradiation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="irradiation"
+            id="field_irradiation"
+            data-cy="irradiation"
+            formControlName="irradiation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_doseTotaleIrr">Dose Totale Irr</label>
+          <input
+            type="number"
+            class="form-control"
+            name="doseTotaleIrr"
+            id="field_doseTotaleIrr"
+            data-cy="doseTotaleIrr"
+            formControlName="doseTotaleIrr"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_serotherapie">Serotherapie</label>
+          <input
+            type="text"
+            class="form-control"
+            name="serotherapie"
+            id="field_serotherapie"
+            data-cy="serotherapie"
+            formControlName="serotherapie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sAL">S AL</label>
+          <input type="text" class="form-control" name="sAL" id="field_sAL" data-cy="sAL" formControlName="sAL" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_doseSAL">Dose SAL</label>
+          <input type="number" class="form-control" name="doseSAL" id="field_doseSAL" data-cy="doseSAL" formControlName="doseSAL" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sourceCellule">Source Cellule</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sourceCellule"
+            id="field_sourceCellule"
+            data-cy="sourceCellule"
+            formControlName="sourceCellule"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sortieAplasie">Sortie Aplasie</label>
+          <input
+            type="number"
+            class="form-control"
+            name="sortieAplasie"
+            id="field_sortieAplasie"
+            data-cy="sortieAplasie"
+            formControlName="sortieAplasie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_gradeaGvH">Gradea Gv H</label>
+          <input type="text" class="form-control" name="gradeaGvH" id="field_gradeaGvH" data-cy="gradeaGvH" formControlName="gradeaGvH" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cGvH">C Gv H</label>
+          <input type="text" class="form-control" name="cGvH" id="field_cGvH" data-cy="cGvH" formControlName="cGvH" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mVO">M VO</label>
+          <input type="text" class="form-control" name="mVO" id="field_mVO" data-cy="mVO" formControlName="mVO" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_complicationPulmonaire">Complication Pulmonaire</label>
+          <input
+            type="text"
+            class="form-control"
+            name="complicationPulmonaire"
+            id="field_complicationPulmonaire"
+            data-cy="complicationPulmonaire"
+            formControlName="complicationPulmonaire"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_preciseCompPulm">Precise Comp Pulm</label>
+          <input
+            type="text"
+            class="form-control"
+            name="preciseCompPulm"
+            id="field_preciseCompPulm"
+            data-cy="preciseCompPulm"
+            formControlName="preciseCompPulm"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_survieJ100">Survie J 100</label>
+          <input
+            type="text"
+            class="form-control"
+            name="survieJ100"
+            id="field_survieJ100"
+            data-cy="survieJ100"
+            formControlName="survieJ100"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sMD">S MD</label>
+          <input type="text" class="form-control" name="sMD" id="field_sMD" data-cy="sMD" formControlName="sMD" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageDiagSMD">Age Diag SMD</label>
+          <input
+            type="number"
+            class="form-control"
+            name="ageDiagSMD"
+            id="field_ageDiagSMD"
+            data-cy="ageDiagSMD"
+            formControlName="ageDiagSMD"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_critereDiagSMD">Critere Diag SMD</label>
+          <input
+            type="text"
+            class="form-control"
+            name="critereDiagSMD"
+            id="field_critereDiagSMD"
+            data-cy="critereDiagSMD"
+            formControlName="critereDiagSMD"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementSMD">Traitement SMD</label>
+          <input
+            type="text"
+            class="form-control"
+            name="traitementSMD"
+            id="field_traitementSMD"
+            data-cy="traitementSMD"
+            formControlName="traitementSMD"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lAM">L AM</label>
+          <input type="text" class="form-control" name="lAM" id="field_lAM" data-cy="lAM" formControlName="lAM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_critereDiagLAM">Critere Diag LAM</label>
+          <input
+            type="text"
+            class="form-control"
+            name="critereDiagLAM"
+            id="field_critereDiagLAM"
+            data-cy="critereDiagLAM"
+            formControlName="critereDiagLAM"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementLAM">Traitement LAM</label>
+          <input
+            type="text"
+            class="form-control"
+            name="traitementLAM"
+            id="field_traitementLAM"
+            data-cy="traitementLAM"
+            formControlName="traitementLAM"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autresCancers">Autres Cancers</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autresCancers"
+            id="field_autresCancers"
+            data-cy="autresCancers"
+            formControlName="autresCancers"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dDN">D DN</label>
+          <div class="input-group">
+            <input
+              id="field_dDN"
+              data-cy="dDN"
+              type="text"
+              class="form-control"
+              name="dDN"
+              ngbDatepicker
+              #dDNDp="ngbDatepicker"
+              formControlName="dDN"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dDNDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_transformationAigue">Transformation Aigue</label>
+          <input
+            type="text"
+            class="form-control"
+            name="transformationAigue"
+            id="field_transformationAigue"
+            data-cy="transformationAigue"
+            formControlName="transformationAigue"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageDiagLA">Age Diag LA</label>
+          <input type="number" class="form-control" name="ageDiagLA" id="field_ageDiagLA" data-cy="ageDiagLA" formControlName="ageDiagLA" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementLA">Traitement LA</label>
+          <input
+            type="text"
+            class="form-control"
+            name="traitementLA"
+            id="field_traitementLA"
+            data-cy="traitementLA"
+            formControlName="traitementLA"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cancerE">Cancer E</label>
+          <input type="text" class="form-control" name="cancerE" id="field_cancerE" data-cy="cancerE" formControlName="cancerE" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_localisation">Localisation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="localisation"
+            id="field_localisation"
+            data-cy="localisation"
+            formControlName="localisation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeHistologique">Type Histologique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeHistologique"
+            id="field_typeHistologique"
+            data-cy="typeHistologique"
+            formControlName="typeHistologique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementCancer">Traitement Cancer</label>
+          <input
+            type="text"
+            class="form-control"
+            name="traitementCancer"
+            id="field_traitementCancer"
+            data-cy="traitementCancer"
+            formControlName="traitementCancer"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_preciseTraitement">Precise Traitement</label>
+          <input
+            type="text"
+            class="form-control"
+            name="preciseTraitement"
+            id="field_preciseTraitement"
+            data-cy="preciseTraitement"
+            formControlName="preciseTraitement"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_evolutionCyto">Evolution Cyto</label>
+          <input
+            type="text"
+            class="form-control"
+            name="evolutionCyto"
+            id="field_evolutionCyto"
+            data-cy="evolutionCyto"
+            formControlName="evolutionCyto"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_formuleChrom">Formule Chrom</label>
+          <input
+            type="text"
+            class="form-control"
+            name="formuleChrom"
+            id="field_formuleChrom"
+            data-cy="formuleChrom"
+            formControlName="formuleChrom"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageE">Age E</label>
+          <input type="number" class="form-control" name="ageE" id="field_ageE" data-cy="ageE" formControlName="ageE" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_statut">Statut</label>
+          <input type="text" class="form-control" name="statut" id="field_statut" data-cy="statut" formControlName="statut" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDeces">Cause Deces</label>
+          <input
+            type="text"
+            class="form-control"
+            name="causeDeces"
+            id="field_causeDeces"
+            data-cy="causeDeces"
+            formControlName="causeDeces"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autreCauseD">Autre Cause D</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreCauseD"
+            id="field_autreCauseD"
+            data-cy="autreCauseD"
+            formControlName="autreCauseD"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_survieGlobale">Survie Globale</label>
+          <input
+            type="number"
+            class="form-control"
+            name="survieGlobale"
+            id="field_survieGlobale"
+            data-cy="survieGlobale"
+            formControlName="survieGlobale"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_code">Code</label>
+          <input type="number" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateMAJ">Date MAJ</label>
+          <div class="input-group">
+            <input
+              id="field_dateMAJ"
+              data-cy="dateMAJ"
+              type="text"
+              class="form-control"
+              name="dateMAJ"
+              ngbDatepicker
+              #dateMAJDp="ngbDatepicker"
+              formControlName="dateMAJ"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateMAJDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreTacheCafe">Nombre Tache Cafe</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nombreTacheCafe"
+            id="field_nombreTacheCafe"
+            data-cy="nombreTacheCafe"
+            formControlName="nombreTacheCafe"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreTacheHypo">Nombre Tache Hypo</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nombreTacheHypo"
+            id="field_nombreTacheHypo"
+            data-cy="nombreTacheHypo"
+            formControlName="nombreTacheHypo"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

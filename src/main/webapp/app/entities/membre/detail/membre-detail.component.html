@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (membre(); as membreRef) {
+      <div>
+        <h2 data-cy="membreDetailsHeading"><span>Membre</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ membreRef.id }}</span>
+          </dd>
+          <dt><span>N Dossier M</span></dt>
+          <dd>
+            <span>{{ membreRef.nDossierM }}</span>
+          </dd>
+          <dt><span>Id Membre</span></dt>
+          <dd>
+            <span>{{ membreRef.idMembre }}</span>
+          </dd>
+          <dt><span>Prenom M</span></dt>
+          <dd>
+            <span>{{ membreRef.prenomM }}</span>
+          </dd>
+          <dt><span>Lien Parente</span></dt>
+          <dd>
+            <span>{{ membreRef.lienParente }}</span>
+          </dd>
+          <dt><span>Type Cancer M</span></dt>
+          <dd>
+            <span>{{ membreRef.typeCancerM }}</span>
+          </dd>
+          <dt><span>Age Decouverte M</span></dt>
+          <dd>
+            <span>{{ membreRef.ageDecouverteM }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/membre', membreRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

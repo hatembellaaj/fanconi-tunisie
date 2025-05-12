@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (patient(); as patientRef) {
+      <div>
+        <h2 data-cy="patientDetailsHeading"><span>Patient</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ patientRef.id }}</span>
+          </dd>
+          <dt><span>Ndossier P</span></dt>
+          <dd>
+            <span>{{ patientRef.ndossierP }}</span>
+          </dd>
+          <dt><span>Nom</span></dt>
+          <dd>
+            <span>{{ patientRef.nom }}</span>
+          </dd>
+          <dt><span>Prenom</span></dt>
+          <dd>
+            <span>{{ patientRef.prenom }}</span>
+          </dd>
+          <dt><span>Date Naissance</span></dt>
+          <dd>
+            <span>{{ patientRef.dateNaissance }}</span>
+          </dd>
+          <dt><span>Lieu Naissance</span></dt>
+          <dd>
+            <span>{{ patientRef.lieuNaissance }}</span>
+          </dd>
+          <dt><span>Sexe</span></dt>
+          <dd>
+            <span>{{ patientRef.sexe }}</span>
+          </dd>
+          <dt><span>Gouvernorat</span></dt>
+          <dd>
+            <span>{{ patientRef.gouvernorat }}</span>
+          </dd>
+          <dt><span>Adresse</span></dt>
+          <dd>
+            <span>{{ patientRef.adresse }}</span>
+          </dd>
+          <dt><span>Reperes</span></dt>
+          <dd>
+            <span>{{ patientRef.reperes }}</span>
+          </dd>
+          <dt><span>Tel</span></dt>
+          <dd>
+            <span>{{ patientRef.tel }}</span>
+          </dd>
+          <dt><span>Prenom Pere</span></dt>
+          <dd>
+            <span>{{ patientRef.prenomPere }}</span>
+          </dd>
+          <dt><span>Nom Mere</span></dt>
+          <dd>
+            <span>{{ patientRef.nomMere }}</span>
+          </dd>
+          <dt><span>Prenom Mere</span></dt>
+          <dd>
+            <span>{{ patientRef.prenomMere }}</span>
+          </dd>
+          <dt><span>Nom GMP</span></dt>
+          <dd>
+            <span>{{ patientRef.nomGMP }}</span>
+          </dd>
+          <dt><span>Nom GMM</span></dt>
+          <dd>
+            <span>{{ patientRef.nomGMM }}</span>
+          </dd>
+          <dt><span>Age</span></dt>
+          <dd>
+            <span>{{ patientRef.age }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/patient', patientRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

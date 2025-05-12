@@ -1,0 +1,19 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181601"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "codeHopital",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nomHopital",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Hopital",
+  "relationships": [],
+  "searchEngine": "no"
+}

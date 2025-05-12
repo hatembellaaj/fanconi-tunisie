@@ -1,0 +1,919 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181559"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nDossier",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateDiagnostic",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateEnregistrement",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "medecin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hopital",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "service",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "degConsang",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "placeEnfant",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nbVivant",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nbMort",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "mortNe",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "avortement",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "cousin",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "membre",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "arbregenealogique",
+      "fieldType": "Blob"
+    },
+    {
+      "fieldName": "arbregenealogiquecancer",
+      "fieldType": "Blob"
+    },
+    {
+      "fieldName": "syndromeAnemique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "syndromeHem",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "syndromeInf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "decouverteFort",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "enqueteFam",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeCancer",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cancer",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tailleNaiss",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "poidsNaiss",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "hypotrophie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "troubleCroi",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "aAgeChDiag",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "mAgeChDiag",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "aAgeOssDiag",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "mAgeOssDiag",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ageRetard",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "poids",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "poidsDS",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "taille",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "tailleDS",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "atteinteCut",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tacheCaf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ventre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "membreSup",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "membreInf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "visage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "thorax",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dOS",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hyperPig",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hypochromique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "couleurPeau",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreAtCut",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "atteinteTete",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "microcephalie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "microphtalmie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "facieTrig",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "traitsFin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreAtTete",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "empreintedigitiforme",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "malUro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "uIV",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "echo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reinEctop",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "siegeEctopie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reinFerChev",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "petitRein",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reinUnique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ectopTest",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "vergeInsuf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreAnomVerge",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "retardPubertaire",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mTanner",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pTanner",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tTanner",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomUrin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeAnomUrin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "atteinteOss",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "radiosfaites",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomPouce",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "surnumerarie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "agenesiePouce",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bifide",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hypoPouce",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "aspectPouce",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hypoEminence",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "absenceRadial",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pouceBas",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreAnomPouce",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomAutDoigts",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "courtstrapus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "syndactylie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreAnomDoigts",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomalieos",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "agenesieRadius",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreanomalieMembresup",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomOrteil",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preciseAnomOrt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lCH",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreanomalieMembreinf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomRachis",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preciseAnomRac",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreAnomOss",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomNeuro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "retardMent",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hypoacousie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "strabisme",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "performanceScolaire",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreanomalieneurologique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomCardVas",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "echoCoeur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preciseAnomCardio",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anomDig",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preciseAnomDig",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "endocrinopathie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "diabete",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "insulinoDep",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hypothyroidie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ageDecouverte",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "autreEndocrinopathie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreAnomCong",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNumSanguine",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "hb",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "vGM",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "retic",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "leuco",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "pNN",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "plq",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "hbInf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "plqInf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pNNInf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "electrophoreseHb",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hbf",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "myelogramme",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cellularite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "erythroblaste",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "morphologieEryth",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "morphologieGran",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "morphologieMega",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "granuleux",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "dysmyelopoiese",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "megacaryocytes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "blaste",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "excesblastes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bOM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adipocytes",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "ubiquitination",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "resUbiquitination",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "groupComp",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mutationFANC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "congelationCellule",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "labo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typePrelevement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "scoreClinique",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "scoreEBMT",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "score",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "transfusion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ageTransf",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "delaiDiag",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "nbCG",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nbCP",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "chelationFer",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "chelateur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nilevar",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "danatrol",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "oxynethadone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "androtordyl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreAndrogene",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "androDebut",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "androFin",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "observance",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "toxicite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreToxicite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "enqueteHLA",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pourquoiEnqHLA",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nbFratTyp",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nbFratNTyp",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "donneurComp",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "preciseDonneur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "donneur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "greffeFaite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "delaiRappDiag",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "pourquoiNfaite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cyclophosphamide",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fludarabine",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "busulfan",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "doseCyclo",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "doseFlu",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "doseBus",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "autreConditionnement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "irradiation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "doseTotaleIrr",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "serotherapie",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sAL",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "doseSAL",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "sourceCellule",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sortieAplasie",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "gradeaGvH",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cGvH",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mVO",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "complicationPulmonaire",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preciseCompPulm",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "survieJ100",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sMD",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ageDiagSMD",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "critereDiagSMD",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "traitementSMD",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lAM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "critereDiagLAM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "traitementLAM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autresCancers",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dDN",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "transformationAigue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ageDiagLA",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "traitementLA",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cancerE",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "localisation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeHistologique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "traitementCancer",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preciseTraitement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "evolutionCyto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "formuleChrom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ageE",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "causeDeces",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreCauseD",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "survieGlobale",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dateMAJ",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "nombreTacheCafe",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nombreTacheHypo",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Fiche",
+  "relationships": [],
+  "searchEngine": "no"
+}

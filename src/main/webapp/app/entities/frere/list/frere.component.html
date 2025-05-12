@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="FrereHeading">
+    <span>Freres</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-frere"
+        [routerLink]="['/frere/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Frere</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (freres?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Frere trouvé</span>
+    </div>
+  }
+
+  @if (freres && freres.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nDossierF">
+              <div class="d-flex">
+                <span>N Dossier F</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="idFrere">
+              <div class="d-flex">
+                <span>Id Frere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenomFrere">
+              <div class="d-flex">
+                <span>Prenom Frere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="atteint">
+              <div class="d-flex">
+                <span>Atteint</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="placefratrie">
+              <div class="d-flex">
+                <span>Placefratrie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sexeF">
+              <div class="d-flex">
+                <span>Sexe F</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="decedes">
+              <div class="d-flex">
+                <span>Decedes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="age">
+              <div class="d-flex">
+                <span>Age</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (frere of freres; track trackId(frere)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/frere', frere.id, 'view']">{{ frere.id }}</a>
+              </td>
+              <td>{{ frere.nDossierF }}</td>
+              <td>{{ frere.idFrere }}</td>
+              <td>{{ frere.prenomFrere }}</td>
+              <td>{{ frere.atteint }}</td>
+              <td>{{ frere.placefratrie }}</td>
+              <td>{{ frere.sexeF }}</td>
+              <td>{{ frere.decedes }}</td>
+              <td>{{ frere.age }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/frere', frere.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/frere', frere.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(frere)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

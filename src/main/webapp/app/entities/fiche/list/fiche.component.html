@@ -1,0 +1,1894 @@
+<div>
+  <h2 id="page-heading" data-cy="FicheHeading">
+    <span>Fiches</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-fiche"
+        [routerLink]="['/fiche/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Fiche</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (fiches?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Fiche trouvé</span>
+    </div>
+  }
+
+  @if (fiches && fiches.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nDossier">
+              <div class="d-flex">
+                <span>N Dossier</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateDiagnostic">
+              <div class="d-flex">
+                <span>Date Diagnostic</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateEnregistrement">
+              <div class="d-flex">
+                <span>Date Enregistrement</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="medecin">
+              <div class="d-flex">
+                <span>Medecin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hopital">
+              <div class="d-flex">
+                <span>Hopital</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="service">
+              <div class="d-flex">
+                <span>Service</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="degConsang">
+              <div class="d-flex">
+                <span>Deg Consang</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="placeEnfant">
+              <div class="d-flex">
+                <span>Place Enfant</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nbVivant">
+              <div class="d-flex">
+                <span>Nb Vivant</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nbMort">
+              <div class="d-flex">
+                <span>Nb Mort</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mortNe">
+              <div class="d-flex">
+                <span>Mort Ne</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="avortement">
+              <div class="d-flex">
+                <span>Avortement</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cousin">
+              <div class="d-flex">
+                <span>Cousin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="membre">
+              <div class="d-flex">
+                <span>Membre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="arbregenealogique">
+              <div class="d-flex">
+                <span>Arbregenealogique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="arbregenealogiquecancer">
+              <div class="d-flex">
+                <span>Arbregenealogiquecancer</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="syndromeAnemique">
+              <div class="d-flex">
+                <span>Syndrome Anemique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="syndromeHem">
+              <div class="d-flex">
+                <span>Syndrome Hem</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="syndromeInf">
+              <div class="d-flex">
+                <span>Syndrome Inf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="decouverteFort">
+              <div class="d-flex">
+                <span>Decouverte Fort</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="enqueteFam">
+              <div class="d-flex">
+                <span>Enquete Fam</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeCancer">
+              <div class="d-flex">
+                <span>Type Cancer</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cancer">
+              <div class="d-flex">
+                <span>Cancer</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tailleNaiss">
+              <div class="d-flex">
+                <span>Taille Naiss</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="poidsNaiss">
+              <div class="d-flex">
+                <span>Poids Naiss</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hypotrophie">
+              <div class="d-flex">
+                <span>Hypotrophie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="troubleCroi">
+              <div class="d-flex">
+                <span>Trouble Croi</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="aAgeChDiag">
+              <div class="d-flex">
+                <span>A Age Ch Diag</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mAgeChDiag">
+              <div class="d-flex">
+                <span>M Age Ch Diag</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="aAgeOssDiag">
+              <div class="d-flex">
+                <span>A Age Oss Diag</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mAgeOssDiag">
+              <div class="d-flex">
+                <span>M Age Oss Diag</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageRetard">
+              <div class="d-flex">
+                <span>Age Retard</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="poids">
+              <div class="d-flex">
+                <span>Poids</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="poidsDS">
+              <div class="d-flex">
+                <span>Poids DS</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="taille">
+              <div class="d-flex">
+                <span>Taille</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tailleDS">
+              <div class="d-flex">
+                <span>Taille DS</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="atteinteCut">
+              <div class="d-flex">
+                <span>Atteinte Cut</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tacheCaf">
+              <div class="d-flex">
+                <span>Tache Caf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ventre">
+              <div class="d-flex">
+                <span>Ventre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="membreSup">
+              <div class="d-flex">
+                <span>Membre Sup</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="membreInf">
+              <div class="d-flex">
+                <span>Membre Inf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="visage">
+              <div class="d-flex">
+                <span>Visage</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="thorax">
+              <div class="d-flex">
+                <span>Thorax</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dOS">
+              <div class="d-flex">
+                <span>D OS</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hyperPig">
+              <div class="d-flex">
+                <span>Hyper Pig</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hypochromique">
+              <div class="d-flex">
+                <span>Hypochromique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="couleurPeau">
+              <div class="d-flex">
+                <span>Couleur Peau</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreAtCut">
+              <div class="d-flex">
+                <span>Autre At Cut</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="atteinteTete">
+              <div class="d-flex">
+                <span>Atteinte Tete</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="microcephalie">
+              <div class="d-flex">
+                <span>Microcephalie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="microphtalmie">
+              <div class="d-flex">
+                <span>Microphtalmie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="facieTrig">
+              <div class="d-flex">
+                <span>Facie Trig</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="traitsFin">
+              <div class="d-flex">
+                <span>Traits Fin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreAtTete">
+              <div class="d-flex">
+                <span>Autre At Tete</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empreintedigitiforme">
+              <div class="d-flex">
+                <span>Empreintedigitiforme</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="malUro">
+              <div class="d-flex">
+                <span>Mal Uro</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="uIV">
+              <div class="d-flex">
+                <span>U IV</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="echo">
+              <div class="d-flex">
+                <span>Echo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="reinEctop">
+              <div class="d-flex">
+                <span>Rein Ectop</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="siegeEctopie">
+              <div class="d-flex">
+                <span>Siege Ectopie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="reinFerChev">
+              <div class="d-flex">
+                <span>Rein Fer Chev</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="petitRein">
+              <div class="d-flex">
+                <span>Petit Rein</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="reinUnique">
+              <div class="d-flex">
+                <span>Rein Unique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ectopTest">
+              <div class="d-flex">
+                <span>Ectop Test</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vergeInsuf">
+              <div class="d-flex">
+                <span>Verge Insuf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreAnomVerge">
+              <div class="d-flex">
+                <span>Autre Anom Verge</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="retardPubertaire">
+              <div class="d-flex">
+                <span>Retard Pubertaire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mTanner">
+              <div class="d-flex">
+                <span>M Tanner</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pTanner">
+              <div class="d-flex">
+                <span>P Tanner</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tTanner">
+              <div class="d-flex">
+                <span>T Tanner</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomUrin">
+              <div class="d-flex">
+                <span>Anom Urin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeAnomUrin">
+              <div class="d-flex">
+                <span>Type Anom Urin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="atteinteOss">
+              <div class="d-flex">
+                <span>Atteinte Oss</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="radiosfaites">
+              <div class="d-flex">
+                <span>Radiosfaites</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomPouce">
+              <div class="d-flex">
+                <span>Anom Pouce</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="surnumerarie">
+              <div class="d-flex">
+                <span>Surnumerarie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="agenesiePouce">
+              <div class="d-flex">
+                <span>Agenesie Pouce</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bifide">
+              <div class="d-flex">
+                <span>Bifide</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hypoPouce">
+              <div class="d-flex">
+                <span>Hypo Pouce</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="aspectPouce">
+              <div class="d-flex">
+                <span>Aspect Pouce</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hypoEminence">
+              <div class="d-flex">
+                <span>Hypo Eminence</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="absenceRadial">
+              <div class="d-flex">
+                <span>Absence Radial</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pouceBas">
+              <div class="d-flex">
+                <span>Pouce Bas</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreAnomPouce">
+              <div class="d-flex">
+                <span>Autre Anom Pouce</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomAutDoigts">
+              <div class="d-flex">
+                <span>Anom Aut Doigts</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="courtstrapus">
+              <div class="d-flex">
+                <span>Courtstrapus</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="syndactylie">
+              <div class="d-flex">
+                <span>Syndactylie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreAnomDoigts">
+              <div class="d-flex">
+                <span>Autre Anom Doigts</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomalieos">
+              <div class="d-flex">
+                <span>Anomalieos</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="agenesieRadius">
+              <div class="d-flex">
+                <span>Agenesie Radius</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreanomalieMembresup">
+              <div class="d-flex">
+                <span>Autreanomalie Membresup</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomOrteil">
+              <div class="d-flex">
+                <span>Anom Orteil</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="preciseAnomOrt">
+              <div class="d-flex">
+                <span>Precise Anom Ort</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lCH">
+              <div class="d-flex">
+                <span>L CH</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreanomalieMembreinf">
+              <div class="d-flex">
+                <span>Autreanomalie Membreinf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomRachis">
+              <div class="d-flex">
+                <span>Anom Rachis</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="preciseAnomRac">
+              <div class="d-flex">
+                <span>Precise Anom Rac</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreAnomOss">
+              <div class="d-flex">
+                <span>Autre Anom Oss</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomNeuro">
+              <div class="d-flex">
+                <span>Anom Neuro</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="retardMent">
+              <div class="d-flex">
+                <span>Retard Ment</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hypoacousie">
+              <div class="d-flex">
+                <span>Hypoacousie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="strabisme">
+              <div class="d-flex">
+                <span>Strabisme</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="performanceScolaire">
+              <div class="d-flex">
+                <span>Performance Scolaire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreanomalieneurologique">
+              <div class="d-flex">
+                <span>Autreanomalieneurologique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomCardVas">
+              <div class="d-flex">
+                <span>Anom Card Vas</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="echoCoeur">
+              <div class="d-flex">
+                <span>Echo Coeur</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="preciseAnomCardio">
+              <div class="d-flex">
+                <span>Precise Anom Cardio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anomDig">
+              <div class="d-flex">
+                <span>Anom Dig</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="preciseAnomDig">
+              <div class="d-flex">
+                <span>Precise Anom Dig</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="endocrinopathie">
+              <div class="d-flex">
+                <span>Endocrinopathie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diabete">
+              <div class="d-flex">
+                <span>Diabete</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="insulinoDep">
+              <div class="d-flex">
+                <span>Insulino Dep</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hypothyroidie">
+              <div class="d-flex">
+                <span>Hypothyroidie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageDecouverte">
+              <div class="d-flex">
+                <span>Age Decouverte</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreEndocrinopathie">
+              <div class="d-flex">
+                <span>Autre Endocrinopathie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreAnomCong">
+              <div class="d-flex">
+                <span>Autre Anom Cong</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateNumSanguine">
+              <div class="d-flex">
+                <span>Date Num Sanguine</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="age">
+              <div class="d-flex">
+                <span>Age</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hb">
+              <div class="d-flex">
+                <span>Hb</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vGM">
+              <div class="d-flex">
+                <span>V GM</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="retic">
+              <div class="d-flex">
+                <span>Retic</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="leuco">
+              <div class="d-flex">
+                <span>Leuco</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pNN">
+              <div class="d-flex">
+                <span>P NN</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="plq">
+              <div class="d-flex">
+                <span>Plq</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hbInf">
+              <div class="d-flex">
+                <span>Hb Inf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="plqInf">
+              <div class="d-flex">
+                <span>Plq Inf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pNNInf">
+              <div class="d-flex">
+                <span>P NN Inf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="electrophoreseHb">
+              <div class="d-flex">
+                <span>Electrophorese Hb</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hbf">
+              <div class="d-flex">
+                <span>Hbf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="myelogramme">
+              <div class="d-flex">
+                <span>Myelogramme</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cellularite">
+              <div class="d-flex">
+                <span>Cellularite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="erythroblaste">
+              <div class="d-flex">
+                <span>Erythroblaste</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="morphologieEryth">
+              <div class="d-flex">
+                <span>Morphologie Eryth</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="morphologieGran">
+              <div class="d-flex">
+                <span>Morphologie Gran</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="morphologieMega">
+              <div class="d-flex">
+                <span>Morphologie Mega</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="granuleux">
+              <div class="d-flex">
+                <span>Granuleux</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dysmyelopoiese">
+              <div class="d-flex">
+                <span>Dysmyelopoiese</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="megacaryocytes">
+              <div class="d-flex">
+                <span>Megacaryocytes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="blaste">
+              <div class="d-flex">
+                <span>Blaste</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="excesblastes">
+              <div class="d-flex">
+                <span>Excesblastes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bOM">
+              <div class="d-flex">
+                <span>B OM</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adipocytes">
+              <div class="d-flex">
+                <span>Adipocytes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ubiquitination">
+              <div class="d-flex">
+                <span>Ubiquitination</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="resUbiquitination">
+              <div class="d-flex">
+                <span>Res Ubiquitination</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="groupComp">
+              <div class="d-flex">
+                <span>Group Comp</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mutationFANC">
+              <div class="d-flex">
+                <span>Mutation FANC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="congelationCellule">
+              <div class="d-flex">
+                <span>Congelation Cellule</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="labo">
+              <div class="d-flex">
+                <span>Labo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typePrelevement">
+              <div class="d-flex">
+                <span>Type Prelevement</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="scoreClinique">
+              <div class="d-flex">
+                <span>Score Clinique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="scoreEBMT">
+              <div class="d-flex">
+                <span>Score EBMT</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="score">
+              <div class="d-flex">
+                <span>Score</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="transfusion">
+              <div class="d-flex">
+                <span>Transfusion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageTransf">
+              <div class="d-flex">
+                <span>Age Transf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="delaiDiag">
+              <div class="d-flex">
+                <span>Delai Diag</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nbCG">
+              <div class="d-flex">
+                <span>Nb CG</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nbCP">
+              <div class="d-flex">
+                <span>Nb CP</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="chelationFer">
+              <div class="d-flex">
+                <span>Chelation Fer</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="chelateur">
+              <div class="d-flex">
+                <span>Chelateur</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nilevar">
+              <div class="d-flex">
+                <span>Nilevar</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="danatrol">
+              <div class="d-flex">
+                <span>Danatrol</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="oxynethadone">
+              <div class="d-flex">
+                <span>Oxynethadone</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="androtordyl">
+              <div class="d-flex">
+                <span>Androtordyl</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreAndrogene">
+              <div class="d-flex">
+                <span>Autre Androgene</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="androDebut">
+              <div class="d-flex">
+                <span>Andro Debut</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="androFin">
+              <div class="d-flex">
+                <span>Andro Fin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observance">
+              <div class="d-flex">
+                <span>Observance</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="toxicite">
+              <div class="d-flex">
+                <span>Toxicite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreToxicite">
+              <div class="d-flex">
+                <span>Autre Toxicite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="enqueteHLA">
+              <div class="d-flex">
+                <span>Enquete HLA</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pourquoiEnqHLA">
+              <div class="d-flex">
+                <span>Pourquoi Enq HLA</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nbFratTyp">
+              <div class="d-flex">
+                <span>Nb Frat Typ</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nbFratNTyp">
+              <div class="d-flex">
+                <span>Nb Frat N Typ</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="donneurComp">
+              <div class="d-flex">
+                <span>Donneur Comp</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="preciseDonneur">
+              <div class="d-flex">
+                <span>Precise Donneur</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="donneur">
+              <div class="d-flex">
+                <span>Donneur</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="greffeFaite">
+              <div class="d-flex">
+                <span>Greffe Faite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="delaiRappDiag">
+              <div class="d-flex">
+                <span>Delai Rapp Diag</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pourquoiNfaite">
+              <div class="d-flex">
+                <span>Pourquoi Nfaite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cyclophosphamide">
+              <div class="d-flex">
+                <span>Cyclophosphamide</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fludarabine">
+              <div class="d-flex">
+                <span>Fludarabine</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="busulfan">
+              <div class="d-flex">
+                <span>Busulfan</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="doseCyclo">
+              <div class="d-flex">
+                <span>Dose Cyclo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="doseFlu">
+              <div class="d-flex">
+                <span>Dose Flu</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="doseBus">
+              <div class="d-flex">
+                <span>Dose Bus</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreConditionnement">
+              <div class="d-flex">
+                <span>Autre Conditionnement</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="irradiation">
+              <div class="d-flex">
+                <span>Irradiation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="doseTotaleIrr">
+              <div class="d-flex">
+                <span>Dose Totale Irr</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="serotherapie">
+              <div class="d-flex">
+                <span>Serotherapie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sAL">
+              <div class="d-flex">
+                <span>S AL</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="doseSAL">
+              <div class="d-flex">
+                <span>Dose SAL</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sourceCellule">
+              <div class="d-flex">
+                <span>Source Cellule</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sortieAplasie">
+              <div class="d-flex">
+                <span>Sortie Aplasie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="gradeaGvH">
+              <div class="d-flex">
+                <span>Gradea Gv H</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cGvH">
+              <div class="d-flex">
+                <span>C Gv H</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mVO">
+              <div class="d-flex">
+                <span>M VO</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="complicationPulmonaire">
+              <div class="d-flex">
+                <span>Complication Pulmonaire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="preciseCompPulm">
+              <div class="d-flex">
+                <span>Precise Comp Pulm</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="survieJ100">
+              <div class="d-flex">
+                <span>Survie J 100</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sMD">
+              <div class="d-flex">
+                <span>S MD</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageDiagSMD">
+              <div class="d-flex">
+                <span>Age Diag SMD</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="critereDiagSMD">
+              <div class="d-flex">
+                <span>Critere Diag SMD</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="traitementSMD">
+              <div class="d-flex">
+                <span>Traitement SMD</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lAM">
+              <div class="d-flex">
+                <span>L AM</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="critereDiagLAM">
+              <div class="d-flex">
+                <span>Critere Diag LAM</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="traitementLAM">
+              <div class="d-flex">
+                <span>Traitement LAM</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autresCancers">
+              <div class="d-flex">
+                <span>Autres Cancers</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dDN">
+              <div class="d-flex">
+                <span>D DN</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="transformationAigue">
+              <div class="d-flex">
+                <span>Transformation Aigue</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageDiagLA">
+              <div class="d-flex">
+                <span>Age Diag LA</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="traitementLA">
+              <div class="d-flex">
+                <span>Traitement LA</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cancerE">
+              <div class="d-flex">
+                <span>Cancer E</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="localisation">
+              <div class="d-flex">
+                <span>Localisation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeHistologique">
+              <div class="d-flex">
+                <span>Type Histologique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="traitementCancer">
+              <div class="d-flex">
+                <span>Traitement Cancer</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="preciseTraitement">
+              <div class="d-flex">
+                <span>Precise Traitement</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="evolutionCyto">
+              <div class="d-flex">
+                <span>Evolution Cyto</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="formuleChrom">
+              <div class="d-flex">
+                <span>Formule Chrom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageE">
+              <div class="d-flex">
+                <span>Age E</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="statut">
+              <div class="d-flex">
+                <span>Statut</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="causeDeces">
+              <div class="d-flex">
+                <span>Cause Deces</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreCauseD">
+              <div class="d-flex">
+                <span>Autre Cause D</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="survieGlobale">
+              <div class="d-flex">
+                <span>Survie Globale</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="code">
+              <div class="d-flex">
+                <span>Code</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateMAJ">
+              <div class="d-flex">
+                <span>Date MAJ</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombreTacheCafe">
+              <div class="d-flex">
+                <span>Nombre Tache Cafe</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombreTacheHypo">
+              <div class="d-flex">
+                <span>Nombre Tache Hypo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (fiche of fiches; track trackId(fiche)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/fiche', fiche.id, 'view']">{{ fiche.id }}</a>
+              </td>
+              <td>{{ fiche.nDossier }}</td>
+              <td>{{ fiche.dateDiagnostic | formatMediumDate }}</td>
+              <td>{{ fiche.dateEnregistrement | formatMediumDate }}</td>
+              <td>{{ fiche.medecin }}</td>
+              <td>{{ fiche.hopital }}</td>
+              <td>{{ fiche.service }}</td>
+              <td>{{ fiche.degConsang }}</td>
+              <td>{{ fiche.placeEnfant }}</td>
+              <td>{{ fiche.nbVivant }}</td>
+              <td>{{ fiche.nbMort }}</td>
+              <td>{{ fiche.mortNe }}</td>
+              <td>{{ fiche.avortement }}</td>
+              <td>{{ fiche.cousin }}</td>
+              <td>{{ fiche.membre }}</td>
+              <td>{{ fiche.arbregenealogique }}</td>
+              <td>{{ fiche.arbregenealogiquecancer }}</td>
+              <td>{{ fiche.syndromeAnemique }}</td>
+              <td>{{ fiche.syndromeHem }}</td>
+              <td>{{ fiche.syndromeInf }}</td>
+              <td>{{ fiche.decouverteFort }}</td>
+              <td>{{ fiche.enqueteFam }}</td>
+              <td>{{ fiche.typeCancer }}</td>
+              <td>{{ fiche.cancer }}</td>
+              <td>{{ fiche.tailleNaiss }}</td>
+              <td>{{ fiche.poidsNaiss }}</td>
+              <td>{{ fiche.hypotrophie }}</td>
+              <td>{{ fiche.troubleCroi }}</td>
+              <td>{{ fiche.aAgeChDiag }}</td>
+              <td>{{ fiche.mAgeChDiag }}</td>
+              <td>{{ fiche.aAgeOssDiag }}</td>
+              <td>{{ fiche.mAgeOssDiag }}</td>
+              <td>{{ fiche.ageRetard }}</td>
+              <td>{{ fiche.poids }}</td>
+              <td>{{ fiche.poidsDS }}</td>
+              <td>{{ fiche.taille }}</td>
+              <td>{{ fiche.tailleDS }}</td>
+              <td>{{ fiche.atteinteCut }}</td>
+              <td>{{ fiche.tacheCaf }}</td>
+              <td>{{ fiche.ventre }}</td>
+              <td>{{ fiche.membreSup }}</td>
+              <td>{{ fiche.membreInf }}</td>
+              <td>{{ fiche.visage }}</td>
+              <td>{{ fiche.thorax }}</td>
+              <td>{{ fiche.dOS }}</td>
+              <td>{{ fiche.hyperPig }}</td>
+              <td>{{ fiche.hypochromique }}</td>
+              <td>{{ fiche.couleurPeau }}</td>
+              <td>{{ fiche.autreAtCut }}</td>
+              <td>{{ fiche.atteinteTete }}</td>
+              <td>{{ fiche.microcephalie }}</td>
+              <td>{{ fiche.microphtalmie }}</td>
+              <td>{{ fiche.facieTrig }}</td>
+              <td>{{ fiche.traitsFin }}</td>
+              <td>{{ fiche.autreAtTete }}</td>
+              <td>{{ fiche.empreintedigitiforme }}</td>
+              <td>{{ fiche.malUro }}</td>
+              <td>{{ fiche.uIV }}</td>
+              <td>{{ fiche.echo }}</td>
+              <td>{{ fiche.reinEctop }}</td>
+              <td>{{ fiche.siegeEctopie }}</td>
+              <td>{{ fiche.reinFerChev }}</td>
+              <td>{{ fiche.petitRein }}</td>
+              <td>{{ fiche.reinUnique }}</td>
+              <td>{{ fiche.ectopTest }}</td>
+              <td>{{ fiche.vergeInsuf }}</td>
+              <td>{{ fiche.autreAnomVerge }}</td>
+              <td>{{ fiche.retardPubertaire }}</td>
+              <td>{{ fiche.mTanner }}</td>
+              <td>{{ fiche.pTanner }}</td>
+              <td>{{ fiche.tTanner }}</td>
+              <td>{{ fiche.anomUrin }}</td>
+              <td>{{ fiche.typeAnomUrin }}</td>
+              <td>{{ fiche.atteinteOss }}</td>
+              <td>{{ fiche.radiosfaites }}</td>
+              <td>{{ fiche.anomPouce }}</td>
+              <td>{{ fiche.surnumerarie }}</td>
+              <td>{{ fiche.agenesiePouce }}</td>
+              <td>{{ fiche.bifide }}</td>
+              <td>{{ fiche.hypoPouce }}</td>
+              <td>{{ fiche.aspectPouce }}</td>
+              <td>{{ fiche.hypoEminence }}</td>
+              <td>{{ fiche.absenceRadial }}</td>
+              <td>{{ fiche.pouceBas }}</td>
+              <td>{{ fiche.autreAnomPouce }}</td>
+              <td>{{ fiche.anomAutDoigts }}</td>
+              <td>{{ fiche.courtstrapus }}</td>
+              <td>{{ fiche.syndactylie }}</td>
+              <td>{{ fiche.autreAnomDoigts }}</td>
+              <td>{{ fiche.anomalieos }}</td>
+              <td>{{ fiche.agenesieRadius }}</td>
+              <td>{{ fiche.autreanomalieMembresup }}</td>
+              <td>{{ fiche.anomOrteil }}</td>
+              <td>{{ fiche.preciseAnomOrt }}</td>
+              <td>{{ fiche.lCH }}</td>
+              <td>{{ fiche.autreanomalieMembreinf }}</td>
+              <td>{{ fiche.anomRachis }}</td>
+              <td>{{ fiche.preciseAnomRac }}</td>
+              <td>{{ fiche.autreAnomOss }}</td>
+              <td>{{ fiche.anomNeuro }}</td>
+              <td>{{ fiche.retardMent }}</td>
+              <td>{{ fiche.hypoacousie }}</td>
+              <td>{{ fiche.strabisme }}</td>
+              <td>{{ fiche.performanceScolaire }}</td>
+              <td>{{ fiche.autreanomalieneurologique }}</td>
+              <td>{{ fiche.anomCardVas }}</td>
+              <td>{{ fiche.echoCoeur }}</td>
+              <td>{{ fiche.preciseAnomCardio }}</td>
+              <td>{{ fiche.anomDig }}</td>
+              <td>{{ fiche.preciseAnomDig }}</td>
+              <td>{{ fiche.endocrinopathie }}</td>
+              <td>{{ fiche.diabete }}</td>
+              <td>{{ fiche.insulinoDep }}</td>
+              <td>{{ fiche.hypothyroidie }}</td>
+              <td>{{ fiche.ageDecouverte }}</td>
+              <td>{{ fiche.autreEndocrinopathie }}</td>
+              <td>{{ fiche.autreAnomCong }}</td>
+              <td>{{ fiche.dateNumSanguine | formatMediumDate }}</td>
+              <td>{{ fiche.age }}</td>
+              <td>{{ fiche.hb }}</td>
+              <td>{{ fiche.vGM }}</td>
+              <td>{{ fiche.retic }}</td>
+              <td>{{ fiche.leuco }}</td>
+              <td>{{ fiche.pNN }}</td>
+              <td>{{ fiche.plq }}</td>
+              <td>{{ fiche.hbInf }}</td>
+              <td>{{ fiche.plqInf }}</td>
+              <td>{{ fiche.pNNInf }}</td>
+              <td>{{ fiche.electrophoreseHb }}</td>
+              <td>{{ fiche.hbf }}</td>
+              <td>{{ fiche.myelogramme }}</td>
+              <td>{{ fiche.cellularite }}</td>
+              <td>{{ fiche.erythroblaste }}</td>
+              <td>{{ fiche.morphologieEryth }}</td>
+              <td>{{ fiche.morphologieGran }}</td>
+              <td>{{ fiche.morphologieMega }}</td>
+              <td>{{ fiche.granuleux }}</td>
+              <td>{{ fiche.dysmyelopoiese }}</td>
+              <td>{{ fiche.megacaryocytes }}</td>
+              <td>{{ fiche.blaste }}</td>
+              <td>{{ fiche.excesblastes }}</td>
+              <td>{{ fiche.bOM }}</td>
+              <td>{{ fiche.adipocytes }}</td>
+              <td>{{ fiche.ubiquitination }}</td>
+              <td>{{ fiche.resUbiquitination }}</td>
+              <td>{{ fiche.groupComp }}</td>
+              <td>{{ fiche.mutationFANC }}</td>
+              <td>{{ fiche.congelationCellule }}</td>
+              <td>{{ fiche.labo }}</td>
+              <td>{{ fiche.typePrelevement }}</td>
+              <td>{{ fiche.scoreClinique }}</td>
+              <td>{{ fiche.scoreEBMT }}</td>
+              <td>{{ fiche.score }}</td>
+              <td>{{ fiche.transfusion }}</td>
+              <td>{{ fiche.ageTransf }}</td>
+              <td>{{ fiche.delaiDiag }}</td>
+              <td>{{ fiche.nbCG }}</td>
+              <td>{{ fiche.nbCP }}</td>
+              <td>{{ fiche.chelationFer }}</td>
+              <td>{{ fiche.chelateur }}</td>
+              <td>{{ fiche.nilevar }}</td>
+              <td>{{ fiche.danatrol }}</td>
+              <td>{{ fiche.oxynethadone }}</td>
+              <td>{{ fiche.androtordyl }}</td>
+              <td>{{ fiche.autreAndrogene }}</td>
+              <td>{{ fiche.androDebut | formatMediumDate }}</td>
+              <td>{{ fiche.androFin | formatMediumDate }}</td>
+              <td>{{ fiche.observance }}</td>
+              <td>{{ fiche.toxicite }}</td>
+              <td>{{ fiche.autreToxicite }}</td>
+              <td>{{ fiche.enqueteHLA }}</td>
+              <td>{{ fiche.pourquoiEnqHLA }}</td>
+              <td>{{ fiche.nbFratTyp }}</td>
+              <td>{{ fiche.nbFratNTyp }}</td>
+              <td>{{ fiche.donneurComp }}</td>
+              <td>{{ fiche.preciseDonneur }}</td>
+              <td>{{ fiche.donneur }}</td>
+              <td>{{ fiche.greffeFaite }}</td>
+              <td>{{ fiche.delaiRappDiag }}</td>
+              <td>{{ fiche.pourquoiNfaite }}</td>
+              <td>{{ fiche.cyclophosphamide }}</td>
+              <td>{{ fiche.fludarabine }}</td>
+              <td>{{ fiche.busulfan }}</td>
+              <td>{{ fiche.doseCyclo }}</td>
+              <td>{{ fiche.doseFlu }}</td>
+              <td>{{ fiche.doseBus }}</td>
+              <td>{{ fiche.autreConditionnement }}</td>
+              <td>{{ fiche.irradiation }}</td>
+              <td>{{ fiche.doseTotaleIrr }}</td>
+              <td>{{ fiche.serotherapie }}</td>
+              <td>{{ fiche.sAL }}</td>
+              <td>{{ fiche.doseSAL }}</td>
+              <td>{{ fiche.sourceCellule }}</td>
+              <td>{{ fiche.sortieAplasie }}</td>
+              <td>{{ fiche.gradeaGvH }}</td>
+              <td>{{ fiche.cGvH }}</td>
+              <td>{{ fiche.mVO }}</td>
+              <td>{{ fiche.complicationPulmonaire }}</td>
+              <td>{{ fiche.preciseCompPulm }}</td>
+              <td>{{ fiche.survieJ100 }}</td>
+              <td>{{ fiche.sMD }}</td>
+              <td>{{ fiche.ageDiagSMD }}</td>
+              <td>{{ fiche.critereDiagSMD }}</td>
+              <td>{{ fiche.traitementSMD }}</td>
+              <td>{{ fiche.lAM }}</td>
+              <td>{{ fiche.critereDiagLAM }}</td>
+              <td>{{ fiche.traitementLAM }}</td>
+              <td>{{ fiche.autresCancers }}</td>
+              <td>{{ fiche.dDN | formatMediumDate }}</td>
+              <td>{{ fiche.transformationAigue }}</td>
+              <td>{{ fiche.ageDiagLA }}</td>
+              <td>{{ fiche.traitementLA }}</td>
+              <td>{{ fiche.cancerE }}</td>
+              <td>{{ fiche.localisation }}</td>
+              <td>{{ fiche.typeHistologique }}</td>
+              <td>{{ fiche.traitementCancer }}</td>
+              <td>{{ fiche.preciseTraitement }}</td>
+              <td>{{ fiche.evolutionCyto }}</td>
+              <td>{{ fiche.formuleChrom }}</td>
+              <td>{{ fiche.ageE }}</td>
+              <td>{{ fiche.statut }}</td>
+              <td>{{ fiche.causeDeces }}</td>
+              <td>{{ fiche.autreCauseD }}</td>
+              <td>{{ fiche.survieGlobale }}</td>
+              <td>{{ fiche.code }}</td>
+              <td>{{ fiche.dateMAJ | formatMediumDate }}</td>
+              <td>{{ fiche.nombreTacheCafe }}</td>
+              <td>{{ fiche.nombreTacheHypo }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/fiche', fiche.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/fiche', fiche.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(fiche)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

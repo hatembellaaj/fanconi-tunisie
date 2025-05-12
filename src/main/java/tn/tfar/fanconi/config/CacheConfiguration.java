@@ -50,6 +50,19 @@ public class CacheConfiguration {
             createCache(cm, tn.tfar.fanconi.domain.User.class.getName());
             createCache(cm, tn.tfar.fanconi.domain.Authority.class.getName());
             createCache(cm, tn.tfar.fanconi.domain.User.class.getName() + ".authorities");
+            createCache(cm, tn.tfar.fanconi.domain.Androgene.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Cousin.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Cytogeneticien.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Cytogenetique.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Fiche.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Frere.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Hopital.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Laboratoire.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Medecin.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Membre.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Patient.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Scientifique.class.getName());
+            createCache(cm, tn.tfar.fanconi.domain.Service.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

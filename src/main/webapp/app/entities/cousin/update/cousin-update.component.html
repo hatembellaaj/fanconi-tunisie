@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-cousin-heading" data-cy="CousinCreateUpdateHeading">Créer ou éditer un Cousin</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ndossierC">Ndossier C</label>
+          <input type="text" class="form-control" name="ndossierC" id="field_ndossierC" data-cy="ndossierC" formControlName="ndossierC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_idCousin">Id Cousin</label>
+          <input type="number" class="form-control" name="idCousin" id="field_idCousin" data-cy="idCousin" formControlName="idCousin" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenomCousin">Prenom Cousin</label>
+          <input
+            type="text"
+            class="form-control"
+            name="prenomCousin"
+            id="field_prenomCousin"
+            data-cy="prenomCousin"
+            formControlName="prenomCousin"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_placeCousin">Place Cousin</label>
+          <input
+            type="text"
+            class="form-control"
+            name="placeCousin"
+            id="field_placeCousin"
+            data-cy="placeCousin"
+            formControlName="placeCousin"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sexeC">Sexe C</label>
+          <input type="text" class="form-control" name="sexeC" id="field_sexeC" data-cy="sexeC" formControlName="sexeC" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

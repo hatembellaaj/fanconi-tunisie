@@ -1,0 +1,182 @@
+<div>
+  <h2 id="page-heading" data-cy="ScientifiqueHeading">
+    <span>Scientifiques</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-scientifique"
+        [routerLink]="['/scientifique/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Scientifique</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (scientifiques?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Scientifique trouvé</span>
+    </div>
+  }
+
+  @if (scientifiques && scientifiques.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeSC">
+              <div class="d-flex">
+                <span>Code SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomSC">
+              <div class="d-flex">
+                <span>Nom SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenomSC">
+              <div class="d-flex">
+                <span>Prenom SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="serviceSC">
+              <div class="d-flex">
+                <span>Service SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="centreSC">
+              <div class="d-flex">
+                <span>Centre SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adresseSC">
+              <div class="d-flex">
+                <span>Adresse SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telSC">
+              <div class="d-flex">
+                <span>Tel SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="emailSC">
+              <div class="d-flex">
+                <span>Email SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="photoSC">
+              <div class="d-flex">
+                <span>Photo SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeSC">
+              <div class="d-flex">
+                <span>Type SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="loginSC">
+              <div class="d-flex">
+                <span>Login SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="passwdSC">
+              <div class="d-flex">
+                <span>Passwd SC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="uRL">
+              <div class="d-flex">
+                <span>U RL</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (scientifique of scientifiques; track trackId(scientifique)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/scientifique', scientifique.id, 'view']">{{ scientifique.id }}</a>
+              </td>
+              <td>{{ scientifique.codeSC }}</td>
+              <td>{{ scientifique.nomSC }}</td>
+              <td>{{ scientifique.prenomSC }}</td>
+              <td>{{ scientifique.serviceSC }}</td>
+              <td>{{ scientifique.centreSC }}</td>
+              <td>{{ scientifique.adresseSC }}</td>
+              <td>{{ scientifique.telSC }}</td>
+              <td>{{ scientifique.emailSC }}</td>
+              <td>{{ scientifique.photoSC }}</td>
+              <td>{{ scientifique.typeSC }}</td>
+              <td>{{ scientifique.loginSC }}</td>
+              <td>{{ scientifique.passwdSC }}</td>
+              <td>{{ scientifique.uRL }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/scientifique', scientifique.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/scientifique', scientifique.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(scientifique)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

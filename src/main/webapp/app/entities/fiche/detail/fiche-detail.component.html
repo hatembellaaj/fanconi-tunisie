@@ -1,0 +1,938 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (fiche(); as ficheRef) {
+      <div>
+        <h2 data-cy="ficheDetailsHeading"><span>Fiche</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ ficheRef.id }}</span>
+          </dd>
+          <dt><span>N Dossier</span></dt>
+          <dd>
+            <span>{{ ficheRef.nDossier }}</span>
+          </dd>
+          <dt><span>Date Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheRef.dateDiagnostic | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Date Enregistrement</span></dt>
+          <dd>
+            <span>{{ ficheRef.dateEnregistrement | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Medecin</span></dt>
+          <dd>
+            <span>{{ ficheRef.medecin }}</span>
+          </dd>
+          <dt><span>Hopital</span></dt>
+          <dd>
+            <span>{{ ficheRef.hopital }}</span>
+          </dd>
+          <dt><span>Service</span></dt>
+          <dd>
+            <span>{{ ficheRef.service }}</span>
+          </dd>
+          <dt><span>Deg Consang</span></dt>
+          <dd>
+            <span>{{ ficheRef.degConsang }}</span>
+          </dd>
+          <dt><span>Place Enfant</span></dt>
+          <dd>
+            <span>{{ ficheRef.placeEnfant }}</span>
+          </dd>
+          <dt><span>Nb Vivant</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbVivant }}</span>
+          </dd>
+          <dt><span>Nb Mort</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbMort }}</span>
+          </dd>
+          <dt><span>Mort Ne</span></dt>
+          <dd>
+            <span>{{ ficheRef.mortNe }}</span>
+          </dd>
+          <dt><span>Avortement</span></dt>
+          <dd>
+            <span>{{ ficheRef.avortement }}</span>
+          </dd>
+          <dt><span>Cousin</span></dt>
+          <dd>
+            <span>{{ ficheRef.cousin }}</span>
+          </dd>
+          <dt><span>Membre</span></dt>
+          <dd>
+            <span>{{ ficheRef.membre }}</span>
+          </dd>
+          <dt><span>Arbregenealogique</span></dt>
+          <dd>
+            <span>{{ ficheRef.arbregenealogique }}</span>
+          </dd>
+          <dt><span>Arbregenealogiquecancer</span></dt>
+          <dd>
+            <span>{{ ficheRef.arbregenealogiquecancer }}</span>
+          </dd>
+          <dt><span>Syndrome Anemique</span></dt>
+          <dd>
+            <span>{{ ficheRef.syndromeAnemique }}</span>
+          </dd>
+          <dt><span>Syndrome Hem</span></dt>
+          <dd>
+            <span>{{ ficheRef.syndromeHem }}</span>
+          </dd>
+          <dt><span>Syndrome Inf</span></dt>
+          <dd>
+            <span>{{ ficheRef.syndromeInf }}</span>
+          </dd>
+          <dt><span>Decouverte Fort</span></dt>
+          <dd>
+            <span>{{ ficheRef.decouverteFort }}</span>
+          </dd>
+          <dt><span>Enquete Fam</span></dt>
+          <dd>
+            <span>{{ ficheRef.enqueteFam }}</span>
+          </dd>
+          <dt><span>Type Cancer</span></dt>
+          <dd>
+            <span>{{ ficheRef.typeCancer }}</span>
+          </dd>
+          <dt><span>Cancer</span></dt>
+          <dd>
+            <span>{{ ficheRef.cancer }}</span>
+          </dd>
+          <dt><span>Taille Naiss</span></dt>
+          <dd>
+            <span>{{ ficheRef.tailleNaiss }}</span>
+          </dd>
+          <dt><span>Poids Naiss</span></dt>
+          <dd>
+            <span>{{ ficheRef.poidsNaiss }}</span>
+          </dd>
+          <dt><span>Hypotrophie</span></dt>
+          <dd>
+            <span>{{ ficheRef.hypotrophie }}</span>
+          </dd>
+          <dt><span>Trouble Croi</span></dt>
+          <dd>
+            <span>{{ ficheRef.troubleCroi }}</span>
+          </dd>
+          <dt><span>A Age Ch Diag</span></dt>
+          <dd>
+            <span>{{ ficheRef.aAgeChDiag }}</span>
+          </dd>
+          <dt><span>M Age Ch Diag</span></dt>
+          <dd>
+            <span>{{ ficheRef.mAgeChDiag }}</span>
+          </dd>
+          <dt><span>A Age Oss Diag</span></dt>
+          <dd>
+            <span>{{ ficheRef.aAgeOssDiag }}</span>
+          </dd>
+          <dt><span>M Age Oss Diag</span></dt>
+          <dd>
+            <span>{{ ficheRef.mAgeOssDiag }}</span>
+          </dd>
+          <dt><span>Age Retard</span></dt>
+          <dd>
+            <span>{{ ficheRef.ageRetard }}</span>
+          </dd>
+          <dt><span>Poids</span></dt>
+          <dd>
+            <span>{{ ficheRef.poids }}</span>
+          </dd>
+          <dt><span>Poids DS</span></dt>
+          <dd>
+            <span>{{ ficheRef.poidsDS }}</span>
+          </dd>
+          <dt><span>Taille</span></dt>
+          <dd>
+            <span>{{ ficheRef.taille }}</span>
+          </dd>
+          <dt><span>Taille DS</span></dt>
+          <dd>
+            <span>{{ ficheRef.tailleDS }}</span>
+          </dd>
+          <dt><span>Atteinte Cut</span></dt>
+          <dd>
+            <span>{{ ficheRef.atteinteCut }}</span>
+          </dd>
+          <dt><span>Tache Caf</span></dt>
+          <dd>
+            <span>{{ ficheRef.tacheCaf }}</span>
+          </dd>
+          <dt><span>Ventre</span></dt>
+          <dd>
+            <span>{{ ficheRef.ventre }}</span>
+          </dd>
+          <dt><span>Membre Sup</span></dt>
+          <dd>
+            <span>{{ ficheRef.membreSup }}</span>
+          </dd>
+          <dt><span>Membre Inf</span></dt>
+          <dd>
+            <span>{{ ficheRef.membreInf }}</span>
+          </dd>
+          <dt><span>Visage</span></dt>
+          <dd>
+            <span>{{ ficheRef.visage }}</span>
+          </dd>
+          <dt><span>Thorax</span></dt>
+          <dd>
+            <span>{{ ficheRef.thorax }}</span>
+          </dd>
+          <dt><span>D OS</span></dt>
+          <dd>
+            <span>{{ ficheRef.dOS }}</span>
+          </dd>
+          <dt><span>Hyper Pig</span></dt>
+          <dd>
+            <span>{{ ficheRef.hyperPig }}</span>
+          </dd>
+          <dt><span>Hypochromique</span></dt>
+          <dd>
+            <span>{{ ficheRef.hypochromique }}</span>
+          </dd>
+          <dt><span>Couleur Peau</span></dt>
+          <dd>
+            <span>{{ ficheRef.couleurPeau }}</span>
+          </dd>
+          <dt><span>Autre At Cut</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreAtCut }}</span>
+          </dd>
+          <dt><span>Atteinte Tete</span></dt>
+          <dd>
+            <span>{{ ficheRef.atteinteTete }}</span>
+          </dd>
+          <dt><span>Microcephalie</span></dt>
+          <dd>
+            <span>{{ ficheRef.microcephalie }}</span>
+          </dd>
+          <dt><span>Microphtalmie</span></dt>
+          <dd>
+            <span>{{ ficheRef.microphtalmie }}</span>
+          </dd>
+          <dt><span>Facie Trig</span></dt>
+          <dd>
+            <span>{{ ficheRef.facieTrig }}</span>
+          </dd>
+          <dt><span>Traits Fin</span></dt>
+          <dd>
+            <span>{{ ficheRef.traitsFin }}</span>
+          </dd>
+          <dt><span>Autre At Tete</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreAtTete }}</span>
+          </dd>
+          <dt><span>Empreintedigitiforme</span></dt>
+          <dd>
+            <span>{{ ficheRef.empreintedigitiforme }}</span>
+          </dd>
+          <dt><span>Mal Uro</span></dt>
+          <dd>
+            <span>{{ ficheRef.malUro }}</span>
+          </dd>
+          <dt><span>U IV</span></dt>
+          <dd>
+            <span>{{ ficheRef.uIV }}</span>
+          </dd>
+          <dt><span>Echo</span></dt>
+          <dd>
+            <span>{{ ficheRef.echo }}</span>
+          </dd>
+          <dt><span>Rein Ectop</span></dt>
+          <dd>
+            <span>{{ ficheRef.reinEctop }}</span>
+          </dd>
+          <dt><span>Siege Ectopie</span></dt>
+          <dd>
+            <span>{{ ficheRef.siegeEctopie }}</span>
+          </dd>
+          <dt><span>Rein Fer Chev</span></dt>
+          <dd>
+            <span>{{ ficheRef.reinFerChev }}</span>
+          </dd>
+          <dt><span>Petit Rein</span></dt>
+          <dd>
+            <span>{{ ficheRef.petitRein }}</span>
+          </dd>
+          <dt><span>Rein Unique</span></dt>
+          <dd>
+            <span>{{ ficheRef.reinUnique }}</span>
+          </dd>
+          <dt><span>Ectop Test</span></dt>
+          <dd>
+            <span>{{ ficheRef.ectopTest }}</span>
+          </dd>
+          <dt><span>Verge Insuf</span></dt>
+          <dd>
+            <span>{{ ficheRef.vergeInsuf }}</span>
+          </dd>
+          <dt><span>Autre Anom Verge</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreAnomVerge }}</span>
+          </dd>
+          <dt><span>Retard Pubertaire</span></dt>
+          <dd>
+            <span>{{ ficheRef.retardPubertaire }}</span>
+          </dd>
+          <dt><span>M Tanner</span></dt>
+          <dd>
+            <span>{{ ficheRef.mTanner }}</span>
+          </dd>
+          <dt><span>P Tanner</span></dt>
+          <dd>
+            <span>{{ ficheRef.pTanner }}</span>
+          </dd>
+          <dt><span>T Tanner</span></dt>
+          <dd>
+            <span>{{ ficheRef.tTanner }}</span>
+          </dd>
+          <dt><span>Anom Urin</span></dt>
+          <dd>
+            <span>{{ ficheRef.anomUrin }}</span>
+          </dd>
+          <dt><span>Type Anom Urin</span></dt>
+          <dd>
+            <span>{{ ficheRef.typeAnomUrin }}</span>
+          </dd>
+          <dt><span>Atteinte Oss</span></dt>
+          <dd>
+            <span>{{ ficheRef.atteinteOss }}</span>
+          </dd>
+          <dt><span>Radiosfaites</span></dt>
+          <dd>
+            <span>{{ ficheRef.radiosfaites }}</span>
+          </dd>
+          <dt><span>Anom Pouce</span></dt>
+          <dd>
+            <span>{{ ficheRef.anomPouce }}</span>
+          </dd>
+          <dt><span>Surnumerarie</span></dt>
+          <dd>
+            <span>{{ ficheRef.surnumerarie }}</span>
+          </dd>
+          <dt><span>Agenesie Pouce</span></dt>
+          <dd>
+            <span>{{ ficheRef.agenesiePouce }}</span>
+          </dd>
+          <dt><span>Bifide</span></dt>
+          <dd>
+            <span>{{ ficheRef.bifide }}</span>
+          </dd>
+          <dt><span>Hypo Pouce</span></dt>
+          <dd>
+            <span>{{ ficheRef.hypoPouce }}</span>
+          </dd>
+          <dt><span>Aspect Pouce</span></dt>
+          <dd>
+            <span>{{ ficheRef.aspectPouce }}</span>
+          </dd>
+          <dt><span>Hypo Eminence</span></dt>
+          <dd>
+            <span>{{ ficheRef.hypoEminence }}</span>
+          </dd>
+          <dt><span>Absence Radial</span></dt>
+          <dd>
+            <span>{{ ficheRef.absenceRadial }}</span>
+          </dd>
+          <dt><span>Pouce Bas</span></dt>
+          <dd>
+            <span>{{ ficheRef.pouceBas }}</span>
+          </dd>
+          <dt><span>Autre Anom Pouce</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreAnomPouce }}</span>
+          </dd>
+          <dt><span>Anom Aut Doigts</span></dt>
+          <dd>
+            <span>{{ ficheRef.anomAutDoigts }}</span>
+          </dd>
+          <dt><span>Courtstrapus</span></dt>
+          <dd>
+            <span>{{ ficheRef.courtstrapus }}</span>
+          </dd>
+          <dt><span>Syndactylie</span></dt>
+          <dd>
+            <span>{{ ficheRef.syndactylie }}</span>
+          </dd>
+          <dt><span>Autre Anom Doigts</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreAnomDoigts }}</span>
+          </dd>
+          <dt><span>Anomalieos</span></dt>
+          <dd>
+            <span>{{ ficheRef.anomalieos }}</span>
+          </dd>
+          <dt><span>Agenesie Radius</span></dt>
+          <dd>
+            <span>{{ ficheRef.agenesieRadius }}</span>
+          </dd>
+          <dt><span>Autreanomalie Membresup</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreanomalieMembresup }}</span>
+          </dd>
+          <dt><span>Anom Orteil</span></dt>
+          <dd>
+            <span>{{ ficheRef.anomOrteil }}</span>
+          </dd>
+          <dt><span>Precise Anom Ort</span></dt>
+          <dd>
+            <span>{{ ficheRef.preciseAnomOrt }}</span>
+          </dd>
+          <dt><span>L CH</span></dt>
+          <dd>
+            <span>{{ ficheRef.lCH }}</span>
+          </dd>
+          <dt><span>Autreanomalie Membreinf</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreanomalieMembreinf }}</span>
+          </dd>
+          <dt><span>Anom Rachis</span></dt>
+          <dd>
+            <span>{{ ficheRef.anomRachis }}</span>
+          </dd>
+          <dt><span>Precise Anom Rac</span></dt>
+          <dd>
+            <span>{{ ficheRef.preciseAnomRac }}</span>
+          </dd>
+          <dt><span>Autre Anom Oss</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreAnomOss }}</span>
+          </dd>
+          <dt><span>Anom Neuro</span></dt>
+          <dd>
+            <span>{{ ficheRef.anomNeuro }}</span>
+          </dd>
+          <dt><span>Retard Ment</span></dt>
+          <dd>
+            <span>{{ ficheRef.retardMent }}</span>
+          </dd>
+          <dt><span>Hypoacousie</span></dt>
+          <dd>
+            <span>{{ ficheRef.hypoacousie }}</span>
+          </dd>
+          <dt><span>Strabisme</span></dt>
+          <dd>
+            <span>{{ ficheRef.strabisme }}</span>
+          </dd>
+          <dt><span>Performance Scolaire</span></dt>
+          <dd>
+            <span>{{ ficheRef.performanceScolaire }}</span>
+          </dd>
+          <dt><span>Autreanomalieneurologique</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreanomalieneurologique }}</span>
+          </dd>
+          <dt><span>Anom Card Vas</span></dt>
+          <dd>
+            <span>{{ ficheRef.anomCardVas }}</span>
+          </dd>
+          <dt><span>Echo Coeur</span></dt>
+          <dd>
+            <span>{{ ficheRef.echoCoeur }}</span>
+          </dd>
+          <dt><span>Precise Anom Cardio</span></dt>
+          <dd>
+            <span>{{ ficheRef.preciseAnomCardio }}</span>
+          </dd>
+          <dt><span>Anom Dig</span></dt>
+          <dd>
+            <span>{{ ficheRef.anomDig }}</span>
+          </dd>
+          <dt><span>Precise Anom Dig</span></dt>
+          <dd>
+            <span>{{ ficheRef.preciseAnomDig }}</span>
+          </dd>
+          <dt><span>Endocrinopathie</span></dt>
+          <dd>
+            <span>{{ ficheRef.endocrinopathie }}</span>
+          </dd>
+          <dt><span>Diabete</span></dt>
+          <dd>
+            <span>{{ ficheRef.diabete }}</span>
+          </dd>
+          <dt><span>Insulino Dep</span></dt>
+          <dd>
+            <span>{{ ficheRef.insulinoDep }}</span>
+          </dd>
+          <dt><span>Hypothyroidie</span></dt>
+          <dd>
+            <span>{{ ficheRef.hypothyroidie }}</span>
+          </dd>
+          <dt><span>Age Decouverte</span></dt>
+          <dd>
+            <span>{{ ficheRef.ageDecouverte }}</span>
+          </dd>
+          <dt><span>Autre Endocrinopathie</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreEndocrinopathie }}</span>
+          </dd>
+          <dt><span>Autre Anom Cong</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreAnomCong }}</span>
+          </dd>
+          <dt><span>Date Num Sanguine</span></dt>
+          <dd>
+            <span>{{ ficheRef.dateNumSanguine | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age</span></dt>
+          <dd>
+            <span>{{ ficheRef.age }}</span>
+          </dd>
+          <dt><span>Hb</span></dt>
+          <dd>
+            <span>{{ ficheRef.hb }}</span>
+          </dd>
+          <dt><span>V GM</span></dt>
+          <dd>
+            <span>{{ ficheRef.vGM }}</span>
+          </dd>
+          <dt><span>Retic</span></dt>
+          <dd>
+            <span>{{ ficheRef.retic }}</span>
+          </dd>
+          <dt><span>Leuco</span></dt>
+          <dd>
+            <span>{{ ficheRef.leuco }}</span>
+          </dd>
+          <dt><span>P NN</span></dt>
+          <dd>
+            <span>{{ ficheRef.pNN }}</span>
+          </dd>
+          <dt><span>Plq</span></dt>
+          <dd>
+            <span>{{ ficheRef.plq }}</span>
+          </dd>
+          <dt><span>Hb Inf</span></dt>
+          <dd>
+            <span>{{ ficheRef.hbInf }}</span>
+          </dd>
+          <dt><span>Plq Inf</span></dt>
+          <dd>
+            <span>{{ ficheRef.plqInf }}</span>
+          </dd>
+          <dt><span>P NN Inf</span></dt>
+          <dd>
+            <span>{{ ficheRef.pNNInf }}</span>
+          </dd>
+          <dt><span>Electrophorese Hb</span></dt>
+          <dd>
+            <span>{{ ficheRef.electrophoreseHb }}</span>
+          </dd>
+          <dt><span>Hbf</span></dt>
+          <dd>
+            <span>{{ ficheRef.hbf }}</span>
+          </dd>
+          <dt><span>Myelogramme</span></dt>
+          <dd>
+            <span>{{ ficheRef.myelogramme }}</span>
+          </dd>
+          <dt><span>Cellularite</span></dt>
+          <dd>
+            <span>{{ ficheRef.cellularite }}</span>
+          </dd>
+          <dt><span>Erythroblaste</span></dt>
+          <dd>
+            <span>{{ ficheRef.erythroblaste }}</span>
+          </dd>
+          <dt><span>Morphologie Eryth</span></dt>
+          <dd>
+            <span>{{ ficheRef.morphologieEryth }}</span>
+          </dd>
+          <dt><span>Morphologie Gran</span></dt>
+          <dd>
+            <span>{{ ficheRef.morphologieGran }}</span>
+          </dd>
+          <dt><span>Morphologie Mega</span></dt>
+          <dd>
+            <span>{{ ficheRef.morphologieMega }}</span>
+          </dd>
+          <dt><span>Granuleux</span></dt>
+          <dd>
+            <span>{{ ficheRef.granuleux }}</span>
+          </dd>
+          <dt><span>Dysmyelopoiese</span></dt>
+          <dd>
+            <span>{{ ficheRef.dysmyelopoiese }}</span>
+          </dd>
+          <dt><span>Megacaryocytes</span></dt>
+          <dd>
+            <span>{{ ficheRef.megacaryocytes }}</span>
+          </dd>
+          <dt><span>Blaste</span></dt>
+          <dd>
+            <span>{{ ficheRef.blaste }}</span>
+          </dd>
+          <dt><span>Excesblastes</span></dt>
+          <dd>
+            <span>{{ ficheRef.excesblastes }}</span>
+          </dd>
+          <dt><span>B OM</span></dt>
+          <dd>
+            <span>{{ ficheRef.bOM }}</span>
+          </dd>
+          <dt><span>Adipocytes</span></dt>
+          <dd>
+            <span>{{ ficheRef.adipocytes }}</span>
+          </dd>
+          <dt><span>Ubiquitination</span></dt>
+          <dd>
+            <span>{{ ficheRef.ubiquitination }}</span>
+          </dd>
+          <dt><span>Res Ubiquitination</span></dt>
+          <dd>
+            <span>{{ ficheRef.resUbiquitination }}</span>
+          </dd>
+          <dt><span>Group Comp</span></dt>
+          <dd>
+            <span>{{ ficheRef.groupComp }}</span>
+          </dd>
+          <dt><span>Mutation FANC</span></dt>
+          <dd>
+            <span>{{ ficheRef.mutationFANC }}</span>
+          </dd>
+          <dt><span>Congelation Cellule</span></dt>
+          <dd>
+            <span>{{ ficheRef.congelationCellule }}</span>
+          </dd>
+          <dt><span>Labo</span></dt>
+          <dd>
+            <span>{{ ficheRef.labo }}</span>
+          </dd>
+          <dt><span>Type Prelevement</span></dt>
+          <dd>
+            <span>{{ ficheRef.typePrelevement }}</span>
+          </dd>
+          <dt><span>Score Clinique</span></dt>
+          <dd>
+            <span>{{ ficheRef.scoreClinique }}</span>
+          </dd>
+          <dt><span>Score EBMT</span></dt>
+          <dd>
+            <span>{{ ficheRef.scoreEBMT }}</span>
+          </dd>
+          <dt><span>Score</span></dt>
+          <dd>
+            <span>{{ ficheRef.score }}</span>
+          </dd>
+          <dt><span>Transfusion</span></dt>
+          <dd>
+            <span>{{ ficheRef.transfusion }}</span>
+          </dd>
+          <dt><span>Age Transf</span></dt>
+          <dd>
+            <span>{{ ficheRef.ageTransf }}</span>
+          </dd>
+          <dt><span>Delai Diag</span></dt>
+          <dd>
+            <span>{{ ficheRef.delaiDiag }}</span>
+          </dd>
+          <dt><span>Nb CG</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbCG }}</span>
+          </dd>
+          <dt><span>Nb CP</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbCP }}</span>
+          </dd>
+          <dt><span>Chelation Fer</span></dt>
+          <dd>
+            <span>{{ ficheRef.chelationFer }}</span>
+          </dd>
+          <dt><span>Chelateur</span></dt>
+          <dd>
+            <span>{{ ficheRef.chelateur }}</span>
+          </dd>
+          <dt><span>Nilevar</span></dt>
+          <dd>
+            <span>{{ ficheRef.nilevar }}</span>
+          </dd>
+          <dt><span>Danatrol</span></dt>
+          <dd>
+            <span>{{ ficheRef.danatrol }}</span>
+          </dd>
+          <dt><span>Oxynethadone</span></dt>
+          <dd>
+            <span>{{ ficheRef.oxynethadone }}</span>
+          </dd>
+          <dt><span>Androtordyl</span></dt>
+          <dd>
+            <span>{{ ficheRef.androtordyl }}</span>
+          </dd>
+          <dt><span>Autre Androgene</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreAndrogene }}</span>
+          </dd>
+          <dt><span>Andro Debut</span></dt>
+          <dd>
+            <span>{{ ficheRef.androDebut | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Andro Fin</span></dt>
+          <dd>
+            <span>{{ ficheRef.androFin | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Observance</span></dt>
+          <dd>
+            <span>{{ ficheRef.observance }}</span>
+          </dd>
+          <dt><span>Toxicite</span></dt>
+          <dd>
+            <span>{{ ficheRef.toxicite }}</span>
+          </dd>
+          <dt><span>Autre Toxicite</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreToxicite }}</span>
+          </dd>
+          <dt><span>Enquete HLA</span></dt>
+          <dd>
+            <span>{{ ficheRef.enqueteHLA }}</span>
+          </dd>
+          <dt><span>Pourquoi Enq HLA</span></dt>
+          <dd>
+            <span>{{ ficheRef.pourquoiEnqHLA }}</span>
+          </dd>
+          <dt><span>Nb Frat Typ</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbFratTyp }}</span>
+          </dd>
+          <dt><span>Nb Frat N Typ</span></dt>
+          <dd>
+            <span>{{ ficheRef.nbFratNTyp }}</span>
+          </dd>
+          <dt><span>Donneur Comp</span></dt>
+          <dd>
+            <span>{{ ficheRef.donneurComp }}</span>
+          </dd>
+          <dt><span>Precise Donneur</span></dt>
+          <dd>
+            <span>{{ ficheRef.preciseDonneur }}</span>
+          </dd>
+          <dt><span>Donneur</span></dt>
+          <dd>
+            <span>{{ ficheRef.donneur }}</span>
+          </dd>
+          <dt><span>Greffe Faite</span></dt>
+          <dd>
+            <span>{{ ficheRef.greffeFaite }}</span>
+          </dd>
+          <dt><span>Delai Rapp Diag</span></dt>
+          <dd>
+            <span>{{ ficheRef.delaiRappDiag }}</span>
+          </dd>
+          <dt><span>Pourquoi Nfaite</span></dt>
+          <dd>
+            <span>{{ ficheRef.pourquoiNfaite }}</span>
+          </dd>
+          <dt><span>Cyclophosphamide</span></dt>
+          <dd>
+            <span>{{ ficheRef.cyclophosphamide }}</span>
+          </dd>
+          <dt><span>Fludarabine</span></dt>
+          <dd>
+            <span>{{ ficheRef.fludarabine }}</span>
+          </dd>
+          <dt><span>Busulfan</span></dt>
+          <dd>
+            <span>{{ ficheRef.busulfan }}</span>
+          </dd>
+          <dt><span>Dose Cyclo</span></dt>
+          <dd>
+            <span>{{ ficheRef.doseCyclo }}</span>
+          </dd>
+          <dt><span>Dose Flu</span></dt>
+          <dd>
+            <span>{{ ficheRef.doseFlu }}</span>
+          </dd>
+          <dt><span>Dose Bus</span></dt>
+          <dd>
+            <span>{{ ficheRef.doseBus }}</span>
+          </dd>
+          <dt><span>Autre Conditionnement</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreConditionnement }}</span>
+          </dd>
+          <dt><span>Irradiation</span></dt>
+          <dd>
+            <span>{{ ficheRef.irradiation }}</span>
+          </dd>
+          <dt><span>Dose Totale Irr</span></dt>
+          <dd>
+            <span>{{ ficheRef.doseTotaleIrr }}</span>
+          </dd>
+          <dt><span>Serotherapie</span></dt>
+          <dd>
+            <span>{{ ficheRef.serotherapie }}</span>
+          </dd>
+          <dt><span>S AL</span></dt>
+          <dd>
+            <span>{{ ficheRef.sAL }}</span>
+          </dd>
+          <dt><span>Dose SAL</span></dt>
+          <dd>
+            <span>{{ ficheRef.doseSAL }}</span>
+          </dd>
+          <dt><span>Source Cellule</span></dt>
+          <dd>
+            <span>{{ ficheRef.sourceCellule }}</span>
+          </dd>
+          <dt><span>Sortie Aplasie</span></dt>
+          <dd>
+            <span>{{ ficheRef.sortieAplasie }}</span>
+          </dd>
+          <dt><span>Gradea Gv H</span></dt>
+          <dd>
+            <span>{{ ficheRef.gradeaGvH }}</span>
+          </dd>
+          <dt><span>C Gv H</span></dt>
+          <dd>
+            <span>{{ ficheRef.cGvH }}</span>
+          </dd>
+          <dt><span>M VO</span></dt>
+          <dd>
+            <span>{{ ficheRef.mVO }}</span>
+          </dd>
+          <dt><span>Complication Pulmonaire</span></dt>
+          <dd>
+            <span>{{ ficheRef.complicationPulmonaire }}</span>
+          </dd>
+          <dt><span>Precise Comp Pulm</span></dt>
+          <dd>
+            <span>{{ ficheRef.preciseCompPulm }}</span>
+          </dd>
+          <dt><span>Survie J 100</span></dt>
+          <dd>
+            <span>{{ ficheRef.survieJ100 }}</span>
+          </dd>
+          <dt><span>S MD</span></dt>
+          <dd>
+            <span>{{ ficheRef.sMD }}</span>
+          </dd>
+          <dt><span>Age Diag SMD</span></dt>
+          <dd>
+            <span>{{ ficheRef.ageDiagSMD }}</span>
+          </dd>
+          <dt><span>Critere Diag SMD</span></dt>
+          <dd>
+            <span>{{ ficheRef.critereDiagSMD }}</span>
+          </dd>
+          <dt><span>Traitement SMD</span></dt>
+          <dd>
+            <span>{{ ficheRef.traitementSMD }}</span>
+          </dd>
+          <dt><span>L AM</span></dt>
+          <dd>
+            <span>{{ ficheRef.lAM }}</span>
+          </dd>
+          <dt><span>Critere Diag LAM</span></dt>
+          <dd>
+            <span>{{ ficheRef.critereDiagLAM }}</span>
+          </dd>
+          <dt><span>Traitement LAM</span></dt>
+          <dd>
+            <span>{{ ficheRef.traitementLAM }}</span>
+          </dd>
+          <dt><span>Autres Cancers</span></dt>
+          <dd>
+            <span>{{ ficheRef.autresCancers }}</span>
+          </dd>
+          <dt><span>D DN</span></dt>
+          <dd>
+            <span>{{ ficheRef.dDN | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Transformation Aigue</span></dt>
+          <dd>
+            <span>{{ ficheRef.transformationAigue }}</span>
+          </dd>
+          <dt><span>Age Diag LA</span></dt>
+          <dd>
+            <span>{{ ficheRef.ageDiagLA }}</span>
+          </dd>
+          <dt><span>Traitement LA</span></dt>
+          <dd>
+            <span>{{ ficheRef.traitementLA }}</span>
+          </dd>
+          <dt><span>Cancer E</span></dt>
+          <dd>
+            <span>{{ ficheRef.cancerE }}</span>
+          </dd>
+          <dt><span>Localisation</span></dt>
+          <dd>
+            <span>{{ ficheRef.localisation }}</span>
+          </dd>
+          <dt><span>Type Histologique</span></dt>
+          <dd>
+            <span>{{ ficheRef.typeHistologique }}</span>
+          </dd>
+          <dt><span>Traitement Cancer</span></dt>
+          <dd>
+            <span>{{ ficheRef.traitementCancer }}</span>
+          </dd>
+          <dt><span>Precise Traitement</span></dt>
+          <dd>
+            <span>{{ ficheRef.preciseTraitement }}</span>
+          </dd>
+          <dt><span>Evolution Cyto</span></dt>
+          <dd>
+            <span>{{ ficheRef.evolutionCyto }}</span>
+          </dd>
+          <dt><span>Formule Chrom</span></dt>
+          <dd>
+            <span>{{ ficheRef.formuleChrom }}</span>
+          </dd>
+          <dt><span>Age E</span></dt>
+          <dd>
+            <span>{{ ficheRef.ageE }}</span>
+          </dd>
+          <dt><span>Statut</span></dt>
+          <dd>
+            <span>{{ ficheRef.statut }}</span>
+          </dd>
+          <dt><span>Cause Deces</span></dt>
+          <dd>
+            <span>{{ ficheRef.causeDeces }}</span>
+          </dd>
+          <dt><span>Autre Cause D</span></dt>
+          <dd>
+            <span>{{ ficheRef.autreCauseD }}</span>
+          </dd>
+          <dt><span>Survie Globale</span></dt>
+          <dd>
+            <span>{{ ficheRef.survieGlobale }}</span>
+          </dd>
+          <dt><span>Code</span></dt>
+          <dd>
+            <span>{{ ficheRef.code }}</span>
+          </dd>
+          <dt><span>Date MAJ</span></dt>
+          <dd>
+            <span>{{ ficheRef.dateMAJ | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Nombre Tache Cafe</span></dt>
+          <dd>
+            <span>{{ ficheRef.nombreTacheCafe }}</span>
+          </dd>
+          <dt><span>Nombre Tache Hypo</span></dt>
+          <dd>
+            <span>{{ ficheRef.nombreTacheHypo }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fiche', ficheRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,23 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181555"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nDossierPa",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mois",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "reponse",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Androgene",
+  "relationships": [],
+  "searchEngine": "no"
+}

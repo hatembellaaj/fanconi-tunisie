@@ -1,0 +1,206 @@
+<div>
+  <h2 id="page-heading" data-cy="CytogeneticienHeading">
+    <span>Cytogeneticiens</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cytogeneticien"
+        [routerLink]="['/cytogeneticien/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Cytogeneticien</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (cytogeneticiens?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Cytogeneticien trouvé</span>
+    </div>
+  }
+
+  @if (cytogeneticiens && cytogeneticiens.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="code">
+              <div class="d-flex">
+                <span>Code</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nom">
+              <div class="d-flex">
+                <span>Nom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenom">
+              <div class="d-flex">
+                <span>Prenom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="service">
+              <div class="d-flex">
+                <span>Service</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etab">
+              <div class="d-flex">
+                <span>Etab</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adresse">
+              <div class="d-flex">
+                <span>Adresse</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tel">
+              <div class="d-flex">
+                <span>Tel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="poste">
+              <div class="d-flex">
+                <span>Poste</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fax">
+              <div class="d-flex">
+                <span>Fax</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="email">
+              <div class="d-flex">
+                <span>Email</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="photo">
+              <div class="d-flex">
+                <span>Photo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="type">
+              <div class="d-flex">
+                <span>Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="login">
+              <div class="d-flex">
+                <span>Login</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="passwd">
+              <div class="d-flex">
+                <span>Passwd</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="uRL">
+              <div class="d-flex">
+                <span>U RL</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (cytogeneticien of cytogeneticiens; track trackId(cytogeneticien)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/cytogeneticien', cytogeneticien.id, 'view']">{{ cytogeneticien.id }}</a>
+              </td>
+              <td>{{ cytogeneticien.code }}</td>
+              <td>{{ cytogeneticien.nom }}</td>
+              <td>{{ cytogeneticien.prenom }}</td>
+              <td>{{ cytogeneticien.service }}</td>
+              <td>{{ cytogeneticien.etab }}</td>
+              <td>{{ cytogeneticien.adresse }}</td>
+              <td>{{ cytogeneticien.tel }}</td>
+              <td>{{ cytogeneticien.poste }}</td>
+              <td>{{ cytogeneticien.fax }}</td>
+              <td>{{ cytogeneticien.email }}</td>
+              <td>{{ cytogeneticien.photo }}</td>
+              <td>{{ cytogeneticien.type }}</td>
+              <td>{{ cytogeneticien.login }}</td>
+              <td>{{ cytogeneticien.passwd }}</td>
+              <td>{{ cytogeneticien.uRL }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/cytogeneticien', cytogeneticien.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/cytogeneticien', cytogeneticien.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(cytogeneticien)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

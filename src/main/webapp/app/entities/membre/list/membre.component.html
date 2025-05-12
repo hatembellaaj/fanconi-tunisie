@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="MembreHeading">
+    <span>Membres</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-membre"
+        [routerLink]="['/membre/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Membre</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (membres?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Membre trouvé</span>
+    </div>
+  }
+
+  @if (membres && membres.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nDossierM">
+              <div class="d-flex">
+                <span>N Dossier M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="idMembre">
+              <div class="d-flex">
+                <span>Id Membre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenomM">
+              <div class="d-flex">
+                <span>Prenom M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lienParente">
+              <div class="d-flex">
+                <span>Lien Parente</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeCancerM">
+              <div class="d-flex">
+                <span>Type Cancer M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageDecouverteM">
+              <div class="d-flex">
+                <span>Age Decouverte M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (membre of membres; track trackId(membre)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/membre', membre.id, 'view']">{{ membre.id }}</a>
+              </td>
+              <td>{{ membre.nDossierM }}</td>
+              <td>{{ membre.idMembre }}</td>
+              <td>{{ membre.prenomM }}</td>
+              <td>{{ membre.lienParente }}</td>
+              <td>{{ membre.typeCancerM }}</td>
+              <td>{{ membre.ageDecouverteM }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/membre', membre.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/membre', membre.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(membre)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

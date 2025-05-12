@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (frere(); as frereRef) {
+      <div>
+        <h2 data-cy="frereDetailsHeading"><span>Frere</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ frereRef.id }}</span>
+          </dd>
+          <dt><span>N Dossier F</span></dt>
+          <dd>
+            <span>{{ frereRef.nDossierF }}</span>
+          </dd>
+          <dt><span>Id Frere</span></dt>
+          <dd>
+            <span>{{ frereRef.idFrere }}</span>
+          </dd>
+          <dt><span>Prenom Frere</span></dt>
+          <dd>
+            <span>{{ frereRef.prenomFrere }}</span>
+          </dd>
+          <dt><span>Atteint</span></dt>
+          <dd>
+            <span>{{ frereRef.atteint }}</span>
+          </dd>
+          <dt><span>Placefratrie</span></dt>
+          <dd>
+            <span>{{ frereRef.placefratrie }}</span>
+          </dd>
+          <dt><span>Sexe F</span></dt>
+          <dd>
+            <span>{{ frereRef.sexeF }}</span>
+          </dd>
+          <dt><span>Decedes</span></dt>
+          <dd>
+            <span>{{ frereRef.decedes }}</span>
+          </dd>
+          <dt><span>Age</span></dt>
+          <dd>
+            <span>{{ frereRef.age }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/frere', frereRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

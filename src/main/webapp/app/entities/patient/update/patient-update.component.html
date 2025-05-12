@@ -1,0 +1,149 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-patient-heading" data-cy="PatientCreateUpdateHeading">Créer ou éditer un Patient</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ndossierP">Ndossier P</label>
+          <input type="text" class="form-control" name="ndossierP" id="field_ndossierP" data-cy="ndossierP" formControlName="ndossierP" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateNaissance">Date Naissance</label>
+          <input
+            type="text"
+            class="form-control"
+            name="dateNaissance"
+            id="field_dateNaissance"
+            data-cy="dateNaissance"
+            formControlName="dateNaissance"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lieuNaissance">Lieu Naissance</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lieuNaissance"
+            id="field_lieuNaissance"
+            data-cy="lieuNaissance"
+            formControlName="lieuNaissance"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sexe">Sexe</label>
+          <input type="text" class="form-control" name="sexe" id="field_sexe" data-cy="sexe" formControlName="sexe" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_gouvernorat">Gouvernorat</label>
+          <input
+            type="text"
+            class="form-control"
+            name="gouvernorat"
+            id="field_gouvernorat"
+            data-cy="gouvernorat"
+            formControlName="gouvernorat"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adresse">Adresse</label>
+          <input type="text" class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reperes">Reperes</label>
+          <input type="text" class="form-control" name="reperes" id="field_reperes" data-cy="reperes" formControlName="reperes" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tel">Tel</label>
+          <input type="text" class="form-control" name="tel" id="field_tel" data-cy="tel" formControlName="tel" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenomPere">Prenom Pere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="prenomPere"
+            id="field_prenomPere"
+            data-cy="prenomPere"
+            formControlName="prenomPere"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomMere">Nom Mere</label>
+          <input type="text" class="form-control" name="nomMere" id="field_nomMere" data-cy="nomMere" formControlName="nomMere" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenomMere">Prenom Mere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="prenomMere"
+            id="field_prenomMere"
+            data-cy="prenomMere"
+            formControlName="prenomMere"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomGMP">Nom GMP</label>
+          <input type="text" class="form-control" name="nomGMP" id="field_nomGMP" data-cy="nomGMP" formControlName="nomGMP" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomGMM">Nom GMM</label>
+          <input type="text" class="form-control" name="nomGMM" id="field_nomGMM" data-cy="nomGMM" formControlName="nomGMM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_age">Age</label>
+          <input type="number" class="form-control" name="age" id="field_age" data-cy="age" formControlName="age" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

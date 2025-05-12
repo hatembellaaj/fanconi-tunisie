@@ -1,0 +1,71 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181608"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "service",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etab",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fax",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "uRL",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "login",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "passwd",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "Blob"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeUser",
+      "fieldType": "String"
+    }
+  ],
+  "name": "User",
+  "relationships": [],
+  "searchEngine": "no"
+}

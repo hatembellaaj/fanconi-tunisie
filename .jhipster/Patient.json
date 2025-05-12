@@ -1,0 +1,75 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181605"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "ndossierP",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lieuNaissance",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gouvernorat",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reperes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenomPere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomMere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenomMere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomGMP",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomGMM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Patient",
+  "relationships": [],
+  "searchEngine": "no"
+}

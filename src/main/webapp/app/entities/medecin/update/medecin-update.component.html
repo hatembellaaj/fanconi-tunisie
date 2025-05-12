@@ -1,0 +1,170 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-medecin-heading" data-cy="MedecinCreateUpdateHeading">Créer ou éditer un Medecin</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cIN">C IN</label>
+          <input type="number" class="form-control" name="cIN" id="field_cIN" data-cy="cIN" formControlName="cIN" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomMedecin">Nom Medecin</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomMedecin"
+            id="field_nomMedecin"
+            data-cy="nomMedecin"
+            formControlName="nomMedecin"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenomMedecin">Prenom Medecin</label>
+          <input
+            type="text"
+            class="form-control"
+            name="prenomMedecin"
+            id="field_prenomMedecin"
+            data-cy="prenomMedecin"
+            formControlName="prenomMedecin"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_grade">Grade</label>
+          <input type="text" class="form-control" name="grade" id="field_grade" data-cy="grade" formControlName="grade" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeMedecin">Type Medecin</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeMedecin"
+            id="field_typeMedecin"
+            data-cy="typeMedecin"
+            formControlName="typeMedecin"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_gouvernoratM">Gouvernorat M</label>
+          <input
+            type="text"
+            class="form-control"
+            name="gouvernoratM"
+            id="field_gouvernoratM"
+            data-cy="gouvernoratM"
+            formControlName="gouvernoratM"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adresseM">Adresse M</label>
+          <input type="text" class="form-control" name="adresseM" id="field_adresseM" data-cy="adresseM" formControlName="adresseM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telM">Tel M</label>
+          <input type="text" class="form-control" name="telM" id="field_telM" data-cy="telM" formControlName="telM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_posteM">Poste M</label>
+          <input type="text" class="form-control" name="posteM" id="field_posteM" data-cy="posteM" formControlName="posteM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_faxM">Fax M</label>
+          <input type="text" class="form-control" name="faxM" id="field_faxM" data-cy="faxM" formControlName="faxM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_emailM">Email M</label>
+          <input type="text" class="form-control" name="emailM" id="field_emailM" data-cy="emailM" formControlName="emailM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hopital">Hopital</label>
+          <input type="text" class="form-control" name="hopital" id="field_hopital" data-cy="hopital" formControlName="hopital" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_service">Service</label>
+          <input type="text" class="form-control" name="service" id="field_service" data-cy="service" formControlName="service" />
+        </div>
+
+        @let imageRef = editForm.get('image')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_image">Image</label>
+          <div>
+            @if (imageRef.value) {
+              <div class="form-text text-danger clearfix">
+                <span class="pull-start">{{ editForm.get('imageContentType')!.value }}, {{ byteSize(imageRef.value!) }}</span>
+                <button
+                  type="button"
+                  (click)="editForm.patchValue({ image: undefined, imageContentType: undefined })"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+            }
+            <input type="file" id="file_image" data-cy="image" (change)="setFileData($event, 'image', false)" />
+          </div>
+          <input type="hidden" class="form-control" name="image" id="field_image" data-cy="image" formControlName="image" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="imageContentType"
+            id="field_imageContentType"
+            formControlName="imageContentType"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_login">Login</label>
+          <input type="text" class="form-control" name="login" id="field_login" data-cy="login" formControlName="login" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_passwd">Passwd</label>
+          <input type="text" class="form-control" name="passwd" id="field_passwd" data-cy="passwd" formControlName="passwd" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_uRL">U RL</label>
+          <input type="text" class="form-control" name="uRL" id="field_uRL" data-cy="uRL" formControlName="uRL" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

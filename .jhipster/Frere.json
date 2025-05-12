@@ -1,0 +1,43 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181600"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nDossierF",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idFrere",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "prenomFrere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "atteint",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "placefratrie",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "sexeF",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "decedes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Frere",
+  "relationships": [],
+  "searchEngine": "no"
+}

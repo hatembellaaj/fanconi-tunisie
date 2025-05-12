@@ -1,0 +1,214 @@
+<div>
+  <h2 id="page-heading" data-cy="MedecinHeading">
+    <span>Medecins</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-medecin"
+        [routerLink]="['/medecin/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Medecin</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (medecins?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Medecin trouvé</span>
+    </div>
+  }
+
+  @if (medecins && medecins.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cIN">
+              <div class="d-flex">
+                <span>C IN</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomMedecin">
+              <div class="d-flex">
+                <span>Nom Medecin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenomMedecin">
+              <div class="d-flex">
+                <span>Prenom Medecin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="grade">
+              <div class="d-flex">
+                <span>Grade</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeMedecin">
+              <div class="d-flex">
+                <span>Type Medecin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="gouvernoratM">
+              <div class="d-flex">
+                <span>Gouvernorat M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adresseM">
+              <div class="d-flex">
+                <span>Adresse M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telM">
+              <div class="d-flex">
+                <span>Tel M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="posteM">
+              <div class="d-flex">
+                <span>Poste M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="faxM">
+              <div class="d-flex">
+                <span>Fax M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="emailM">
+              <div class="d-flex">
+                <span>Email M</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hopital">
+              <div class="d-flex">
+                <span>Hopital</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="service">
+              <div class="d-flex">
+                <span>Service</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="image">
+              <div class="d-flex">
+                <span>Image</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="login">
+              <div class="d-flex">
+                <span>Login</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="passwd">
+              <div class="d-flex">
+                <span>Passwd</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="uRL">
+              <div class="d-flex">
+                <span>U RL</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (medecin of medecins; track trackId(medecin)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/medecin', medecin.id, 'view']">{{ medecin.id }}</a>
+              </td>
+              <td>{{ medecin.cIN }}</td>
+              <td>{{ medecin.nomMedecin }}</td>
+              <td>{{ medecin.prenomMedecin }}</td>
+              <td>{{ medecin.grade }}</td>
+              <td>{{ medecin.typeMedecin }}</td>
+              <td>{{ medecin.gouvernoratM }}</td>
+              <td>{{ medecin.adresseM }}</td>
+              <td>{{ medecin.telM }}</td>
+              <td>{{ medecin.posteM }}</td>
+              <td>{{ medecin.faxM }}</td>
+              <td>{{ medecin.emailM }}</td>
+              <td>{{ medecin.hopital }}</td>
+              <td>{{ medecin.service }}</td>
+              <td>{{ medecin.image }}</td>
+              <td>{{ medecin.login }}</td>
+              <td>{{ medecin.passwd }}</td>
+              <td>{{ medecin.uRL }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/medecin', medecin.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/medecin', medecin.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(medecin)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

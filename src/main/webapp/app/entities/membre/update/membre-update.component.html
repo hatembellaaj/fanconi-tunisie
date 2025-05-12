@@ -1,0 +1,85 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-membre-heading" data-cy="MembreCreateUpdateHeading">Créer ou éditer un Membre</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nDossierM">N Dossier M</label>
+          <input type="text" class="form-control" name="nDossierM" id="field_nDossierM" data-cy="nDossierM" formControlName="nDossierM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_idMembre">Id Membre</label>
+          <input type="number" class="form-control" name="idMembre" id="field_idMembre" data-cy="idMembre" formControlName="idMembre" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenomM">Prenom M</label>
+          <input type="text" class="form-control" name="prenomM" id="field_prenomM" data-cy="prenomM" formControlName="prenomM" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lienParente">Lien Parente</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lienParente"
+            id="field_lienParente"
+            data-cy="lienParente"
+            formControlName="lienParente"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeCancerM">Type Cancer M</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeCancerM"
+            id="field_typeCancerM"
+            data-cy="typeCancerM"
+            formControlName="typeCancerM"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageDecouverteM">Age Decouverte M</label>
+          <input
+            type="number"
+            class="form-control"
+            name="ageDecouverteM"
+            id="field_ageDecouverteM"
+            data-cy="ageDecouverteM"
+            formControlName="ageDecouverteM"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

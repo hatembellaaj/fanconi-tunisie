@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-scientifique-heading" data-cy="ScientifiqueCreateUpdateHeading">Créer ou éditer un Scientifique</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codeSC">Code SC</label>
+          <input type="number" class="form-control" name="codeSC" id="field_codeSC" data-cy="codeSC" formControlName="codeSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomSC">Nom SC</label>
+          <input type="text" class="form-control" name="nomSC" id="field_nomSC" data-cy="nomSC" formControlName="nomSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenomSC">Prenom SC</label>
+          <input type="text" class="form-control" name="prenomSC" id="field_prenomSC" data-cy="prenomSC" formControlName="prenomSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_serviceSC">Service SC</label>
+          <input type="text" class="form-control" name="serviceSC" id="field_serviceSC" data-cy="serviceSC" formControlName="serviceSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_centreSC">Centre SC</label>
+          <input type="text" class="form-control" name="centreSC" id="field_centreSC" data-cy="centreSC" formControlName="centreSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adresseSC">Adresse SC</label>
+          <input type="text" class="form-control" name="adresseSC" id="field_adresseSC" data-cy="adresseSC" formControlName="adresseSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telSC">Tel SC</label>
+          <input type="text" class="form-control" name="telSC" id="field_telSC" data-cy="telSC" formControlName="telSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_emailSC">Email SC</label>
+          <input type="text" class="form-control" name="emailSC" id="field_emailSC" data-cy="emailSC" formControlName="emailSC" />
+        </div>
+
+        @let photoSCRef = editForm.get('photoSC')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_photoSC">Photo SC</label>
+          <div>
+            @if (photoSCRef.value) {
+              <div class="form-text text-danger clearfix">
+                <span class="pull-start">{{ editForm.get('photoSCContentType')!.value }}, {{ byteSize(photoSCRef.value!) }}</span>
+                <button
+                  type="button"
+                  (click)="editForm.patchValue({ photoSC: undefined, photoSCContentType: undefined })"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+            }
+            <input type="file" id="file_photoSC" data-cy="photoSC" (change)="setFileData($event, 'photoSC', false)" />
+          </div>
+          <input type="hidden" class="form-control" name="photoSC" id="field_photoSC" data-cy="photoSC" formControlName="photoSC" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoSCContentType"
+            id="field_photoSCContentType"
+            formControlName="photoSCContentType"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeSC">Type SC</label>
+          <input type="text" class="form-control" name="typeSC" id="field_typeSC" data-cy="typeSC" formControlName="typeSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_loginSC">Login SC</label>
+          <input type="text" class="form-control" name="loginSC" id="field_loginSC" data-cy="loginSC" formControlName="loginSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_passwdSC">Passwd SC</label>
+          <input type="text" class="form-control" name="passwdSC" id="field_passwdSC" data-cy="passwdSC" formControlName="passwdSC" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_uRL">U RL</label>
+          <input type="text" class="form-control" name="uRL" id="field_uRL" data-cy="uRL" formControlName="uRL" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

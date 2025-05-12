@@ -1,0 +1,63 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181606"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "codeSC",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nomSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenomSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "serviceSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "centreSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresseSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "emailSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photoSC",
+      "fieldType": "Blob"
+    },
+    {
+      "fieldName": "typeSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "loginSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "passwdSC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "uRL",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Scientifique",
+  "relationships": [],
+  "searchEngine": "no"
+}

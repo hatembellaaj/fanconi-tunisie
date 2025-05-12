@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (cytogeneticien(); as cytogeneticienRef) {
+      <div>
+        <h2 data-cy="cytogeneticienDetailsHeading"><span>Cytogeneticien</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.id }}</span>
+          </dd>
+          <dt><span>Code</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.code }}</span>
+          </dd>
+          <dt><span>Nom</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.nom }}</span>
+          </dd>
+          <dt><span>Prenom</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.prenom }}</span>
+          </dd>
+          <dt><span>Service</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.service }}</span>
+          </dd>
+          <dt><span>Etab</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.etab }}</span>
+          </dd>
+          <dt><span>Adresse</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.adresse }}</span>
+          </dd>
+          <dt><span>Tel</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.tel }}</span>
+          </dd>
+          <dt><span>Poste</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.poste }}</span>
+          </dd>
+          <dt><span>Fax</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.fax }}</span>
+          </dd>
+          <dt><span>Email</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.email }}</span>
+          </dd>
+          <dt><span>Photo</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.photo }}</span>
+          </dd>
+          <dt><span>Type</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.type }}</span>
+          </dd>
+          <dt><span>Login</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.login }}</span>
+          </dd>
+          <dt><span>Passwd</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.passwd }}</span>
+          </dd>
+          <dt><span>U RL</span></dt>
+          <dd>
+            <span>{{ cytogeneticienRef.uRL }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/cytogeneticien', cytogeneticienRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (cytogenetique(); as cytogenetiqueRef) {
+      <div>
+        <h2 data-cy="cytogenetiqueDetailsHeading"><span>Cytogenetique</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.id }}</span>
+          </dd>
+          <dt><span>N Dossier Patient</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.nDossierPatient }}</span>
+          </dd>
+          <dt><span>N Etude Cyto</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.nEtudeCyto }}</span>
+          </dd>
+          <dt><span>Lymphocytes</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.lymphocytes }}</span>
+          </dd>
+          <dt><span>Date Sang</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.dateSang | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Laboratoire</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.laboratoire }}</span>
+          </dd>
+          <dt><span>Agent Pontant</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.agentPontant }}</span>
+          </dd>
+          <dt><span>Instabilite</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.instabilite }}</span>
+          </dd>
+          <dt><span>Instabilite Pourcentage</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.instabilitePourcentage }}</span>
+          </dd>
+          <dt><span>I R</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.iR }}</span>
+          </dd>
+          <dt><span>I R Pourcentage</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.iRPourcentage }}</span>
+          </dd>
+          <dt><span>Moelle</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.moelle }}</span>
+          </dd>
+          <dt><span>Date Moelle</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.dateMoelle | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Resultat Moelle</span></dt>
+          <dd>
+            <span>{{ cytogenetiqueRef.resultatMoelle }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/cytogenetique', cytogenetiqueRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

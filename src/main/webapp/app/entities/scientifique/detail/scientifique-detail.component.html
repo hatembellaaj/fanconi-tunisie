@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (scientifique(); as scientifiqueRef) {
+      <div>
+        <h2 data-cy="scientifiqueDetailsHeading"><span>Scientifique</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.id }}</span>
+          </dd>
+          <dt><span>Code SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.codeSC }}</span>
+          </dd>
+          <dt><span>Nom SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.nomSC }}</span>
+          </dd>
+          <dt><span>Prenom SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.prenomSC }}</span>
+          </dd>
+          <dt><span>Service SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.serviceSC }}</span>
+          </dd>
+          <dt><span>Centre SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.centreSC }}</span>
+          </dd>
+          <dt><span>Adresse SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.adresseSC }}</span>
+          </dd>
+          <dt><span>Tel SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.telSC }}</span>
+          </dd>
+          <dt><span>Email SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.emailSC }}</span>
+          </dd>
+          <dt><span>Photo SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.photoSC }}</span>
+          </dd>
+          <dt><span>Type SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.typeSC }}</span>
+          </dd>
+          <dt><span>Login SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.loginSC }}</span>
+          </dd>
+          <dt><span>Passwd SC</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.passwdSC }}</span>
+          </dd>
+          <dt><span>U RL</span></dt>
+          <dd>
+            <span>{{ scientifiqueRef.uRL }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/scientifique', scientifiqueRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

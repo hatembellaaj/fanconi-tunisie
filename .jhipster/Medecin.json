@@ -1,0 +1,79 @@
+{
+  "annotations": {
+    "changelogDate": "20250512181603"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "cIN",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nomMedecin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenomMedecin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "grade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeMedecin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gouvernoratM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresseM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "posteM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "faxM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "emailM",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hopital",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "service",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "Blob"
+    },
+    {
+      "fieldName": "login",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "passwd",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "uRL",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Medecin",
+  "relationships": [],
+  "searchEngine": "no"
+}

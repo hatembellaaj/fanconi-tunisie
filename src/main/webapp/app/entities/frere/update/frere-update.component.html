@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-frere-heading" data-cy="FrereCreateUpdateHeading">Créer ou éditer un Frere</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nDossierF">N Dossier F</label>
+          <input type="text" class="form-control" name="nDossierF" id="field_nDossierF" data-cy="nDossierF" formControlName="nDossierF" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_idFrere">Id Frere</label>
+          <input type="number" class="form-control" name="idFrere" id="field_idFrere" data-cy="idFrere" formControlName="idFrere" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prenomFrere">Prenom Frere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="prenomFrere"
+            id="field_prenomFrere"
+            data-cy="prenomFrere"
+            formControlName="prenomFrere"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_atteint">Atteint</label>
+          <input type="text" class="form-control" name="atteint" id="field_atteint" data-cy="atteint" formControlName="atteint" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_placefratrie">Placefratrie</label>
+          <input
+            type="number"
+            class="form-control"
+            name="placefratrie"
+            id="field_placefratrie"
+            data-cy="placefratrie"
+            formControlName="placefratrie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sexeF">Sexe F</label>
+          <input type="text" class="form-control" name="sexeF" id="field_sexeF" data-cy="sexeF" formControlName="sexeF" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_decedes">Decedes</label>
+          <input type="text" class="form-control" name="decedes" id="field_decedes" data-cy="decedes" formControlName="decedes" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_age">Age</label>
+          <input type="number" class="form-control" name="age" id="field_age" data-cy="age" formControlName="age" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
