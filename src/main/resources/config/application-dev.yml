@@ -34,7 +34,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mariadb://localhost:3306/fanconi?useLegacyDatetimeCode=false
     username: root
-    password: Fanconi2025$$$
+    password: Hemophilie2024$$$
     hikari:
       poolName: Hikari
       auto-commit: false
